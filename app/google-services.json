@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "471089795835",
+    "firebase_url": "https://tzlc12.firebaseio.com",
+    "project_id": "tzlc12",
+    "storage_bucket": "tzlc12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471089795835:android:7e8d7e122c7d4ae0",
+        "android_client_info": {
+          "package_name": "com.kfandra.tzlc12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471089795835-57um325avpaa60tat1d77ovtf5in9gk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kfandra.tzlc12",
+            "certificate_hash": "8a5df34d9ac33ff17d06693bc95c347480af225d"
+          }
+        },
+        {
+          "client_id": "471089795835-iq7ilvpc134dncl5k6hb1ivec7ngdrem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ4akWzx1LszQt0Bm5RdoBV_nzkxIiSxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471089795835-iq7ilvpc134dncl5k6hb1ivec7ngdrem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
