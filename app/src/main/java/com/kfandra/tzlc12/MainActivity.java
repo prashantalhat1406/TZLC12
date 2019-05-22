@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         final Button clubs = findViewById(R.id.butClubs);
         final Button players = findViewById(R.id.butPlayer);
         final Button fixtures = findViewById(R.id.butFixtures);
+        fixtures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fixtureIntent = new Intent(MainActivity.this, tzlc_fixture_display.class);
+                Bundle extras  = new Bundle();
+                extras.putString("role", role);
+                fixtureIntent.putExtras(extras);
+                startActivity(fixtureIntent);
+            }
+        });
         final Button balancesheet = findViewById(R.id.butBalanceSheet);
 
 
@@ -50,16 +61,25 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
                     //signed in
-                    if (user.getEmail().equalsIgnoreCase("kfandraai@kfandra.com") || user.getEmail().contains("manager")){
+                    if (user.getEmail().equalsIgnoreCase("kfandraai@kfandra.com") ){
                         clubs.setVisibility(View.VISIBLE);
                         players.setVisibility(View.VISIBLE);
                         fixtures.setVisibility(View.VISIBLE);
                         balancesheet.setVisibility(View.VISIBLE);
+                        role = "KFANDRAAI";
+                    }else if(user.getEmail().contains("manager")){
+                        clubs.setVisibility(View.VISIBLE);
+                        players.setVisibility(View.VISIBLE);
+                        fixtures.setVisibility(View.VISIBLE);
+                        balancesheet.setVisibility(View.VISIBLE);
+                        role = "MANAGER";
+
                     }else {
                         clubs.setVisibility(View.VISIBLE);
                         players.setVisibility(View.VISIBLE);
                         fixtures.setVisibility(View.VISIBLE);
                         balancesheet.setVisibility(View.GONE);
+                        role = "PLAYER";
                     }
                     //Toast.makeText(MainActivity.this, user.getDisplayName() + " Signed  IN", Toast.LENGTH_LONG).show();
                 }else{
