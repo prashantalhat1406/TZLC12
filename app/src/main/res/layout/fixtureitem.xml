@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="100dp" android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
+        android:layout_width="match_parent" android:layout_weight="0.4"
+        android:layout_height="match_parent" android:orientation="vertical">
+        <TextView android:id="@+id/fixtureDisplayDate"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/tzlcTextSize"
+            android:layout_height="match_parent" android:text="01/12/2018"/>
+        <TextView android:id="@+id/fixtureDisplayDay"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/tzlcTextSize"
+            android:layout_height="match_parent" android:text="Wednesday"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="0.5"/>
+    </LinearLayout>
+    <View android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
+        android:layout_width="1dp"
+        android:layout_height="80dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"  android:layout_weight="0.15"
+        android:layout_height="match_parent" android:orientation="vertical">
+        <TextView android:id="@+id/fixtureDisplayFixture"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/tzlcTextSize"
+            android:layout_height="match_parent" android:text="Mutant Rhinos vs Thunderboltz " android:textStyle="bold"/>
+        <TextView android:id="@+id/fixtureDisplayType"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="14dp"
+            android:layout_height="match_parent" android:text="CLM, NCL" android:textStyle="bold"/>
+        <TextView android:id="@+id/fixtureResult"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="12dp"
+            android:layout_height="match_parent" android:text="Yet to be played"/>
+
+    </LinearLayout>
+
+    <!--<LinearLayout
         android:layout_width="match_parent" android:layout_weight="0.23"
         android:layout_height="match_parent" android:orientation="vertical">
         <TextView android:id="@+id/fixtureDisplayDate"
@@ -60,6 +93,6 @@
         <TextView android:id="@+id/fixtureDisplayAwayScore"
             android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/tzlcTextSize"
             android:layout_height="match_parent" android:text="2"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

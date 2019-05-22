@@ -21,21 +21,34 @@ public class fixtureAdapter  extends ArrayAdapter<Fixture> {
         this.context= context;
     }
 
+    static class ViewHolder{
+        private TextView fixtureDate;
+        private TextView fixtureDay;
+        private TextView fixtureName;
+        private TextView fixtureTypeGround;
+        private TextView fixtureResult;
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        ViewHolder holder;
+
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).
                     inflate(R.layout.fixtureitem,parent,false);
+            holder = new ViewHolder();
+            holder.fixtureName = (TextView)convertView.findViewById(R.id.fixtureDisplayFixture);
+        }
+        else
+        {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         Fixture fixture = fixtures.get(position);
-
-        ((TextView)convertView.findViewById(R.id.fixtureDisplayHome)).setText("" + fixture.getHomeClub());
-        ((TextView)convertView.findViewById(R.id.fixtureDisplayAway)).setText("" + fixture.getAwayClub());
+        holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
 
         return convertView;
-        //return super.getView(position, convertView, parent);
     }
 }

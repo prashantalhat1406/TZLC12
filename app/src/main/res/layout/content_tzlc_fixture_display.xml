@@ -5,7 +5,7 @@
     android:layout_width="match_parent" android:orientation="vertical"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".tzlc_fixture_display"
+    tools:context=".tzlc_fixture_display" android:longClickable="true"
     tools:showIn="@layout/activity_tzlc_fixture_display">
 
     <LinearLayout
@@ -21,14 +21,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_weight="0.1">
-
-        <!--<android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent" android:id="@+id/listFixture"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>-->
         <ListView
             android:layout_width="match_parent" android:id="@+id/listFixture"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
         </ListView>
 
