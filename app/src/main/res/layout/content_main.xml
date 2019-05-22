@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="match_parent" android:orientation="vertical"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="0.2">
+        <Button android:layout_weight="0.3"
+            android:layout_width="match_parent" android:id="@+id/butClubs"
+            android:layout_height="match_parent" android:text="Clubs" android:textSize="@dimen/tzlcTextSize"/>
+
+        <Button android:layout_weight="0.3"
+            android:layout_width="match_parent" android:id="@+id/butPlayer"
+            android:layout_height="match_parent" android:text="Players" android:textSize="@dimen/tzlcTextSize"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="0.2">
+        <Button android:layout_weight="0.3"
+            android:layout_width="match_parent" android:id="@+id/butFixtures"
+            android:layout_height="match_parent" android:text="Fixtures" android:textSize="@dimen/tzlcTextSize"/>
+        <Button android:layout_weight="0.3"
+            android:layout_width="match_parent" android:id="@+id/butBalanceSheet"
+            android:layout_height="match_parent" android:text="BalanceSheet" android:textSize="@dimen/tzlcTextSize"/>
+    </LinearLayout>
+
+</LinearLayout>

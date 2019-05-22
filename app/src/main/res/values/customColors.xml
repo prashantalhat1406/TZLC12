@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Red" type="color">#E6194B</item>
+    <item name="Yellow" type="color">#FFE119</item>
+    <item name="Cyan" type="color">#42D4F4</item>
+    <item name="Green" type="color">#3CB44B</item>
+    <item name="Purple" type="color">#911eb4</item>
+    <item name="Brown" type="color">#9A6324</item>
+    <item name="Navy" type="color">#000075</item>
+    <item name="Magenta" type="color">#F032E6</item>
+    <item name="Maroon" type="color">#800000</item>
+    <item name="Orange" type="color">#F58231</item>
+    <item name="Olive" type="color">#808000</item>
+    <item name="Black" type="color">#000000</item>
+    <item name="White" type="color">#FFFFFF</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/Red</item>
+        <item>@color/Yellow</item>
+        <item>@color/Cyan</item>
+        <item>@color/Green</item>
+        <item>@color/Purple</item>
+        <item>@color/Brown</item>
+        <item>@color/Navy</item>
+        <item>@color/Magenta</item>
+        <item>@color/Maroon</item>
+        <item>@color/Orange</item>
+        <item>@color/Olive</item>
+        <item>@color/Black</item>
+        <item>@color/White</item>
+    </integer-array>
+
+    <string-array name="jerseycolors">
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Cyan</item>
+        <item>Green</item>
+        <item>Purple</item>
+        <item>Brown</item>
+        <item>Navy</item>
+        <item>Magenta</item>
+        <item>Maroon</item>
+        <item>Orange</item>
+        <item>Olive</item>
+        <item>Black</item>
+        <item>White</item>
+    </string-array>
+</resources>
