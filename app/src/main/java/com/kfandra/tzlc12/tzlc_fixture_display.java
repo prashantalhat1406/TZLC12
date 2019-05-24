@@ -9,17 +9,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +48,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
                 fixtures.add(fixture);
-                fixtureAdapter fixtureadapter = new fixtureAdapter(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
+                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
                 fixtureList.setAdapter(fixtureadapter);
             }
 

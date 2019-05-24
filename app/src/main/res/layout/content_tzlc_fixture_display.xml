@@ -8,7 +8,7 @@
     tools:context=".tzlc_fixture_display" android:longClickable="true"
     tools:showIn="@layout/activity_tzlc_fixture_display">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_weight="0.9">
     </LinearLayout>
@@ -16,11 +16,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_weight="0.1">
+        android:layout_height="match_parent" android:layout_weight="0.1" android:layout_marginTop="10dp">
         <ListView
             android:layout_width="match_parent" android:id="@+id/listFixture"
             android:layout_height="match_parent" >
