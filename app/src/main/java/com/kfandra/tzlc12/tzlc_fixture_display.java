@@ -1,30 +1,37 @@
 package com.kfandra.tzlc12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class tzlc_fixture_display extends AppCompatActivity {
     private String role;
     private List<Fixture> fixtures;
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
+    //private FirebaseDatabase database;
+    //private DatabaseReference databaseReference;
+    ListView fixtureList;
+    public int scrollIndex=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +45,17 @@ public class tzlc_fixture_display extends AppCompatActivity {
 
         fixtures = new ArrayList<Fixture>();
 
-        final ListView fixtureList = findViewById(R.id.listFixture);
+        fixtureList = findViewById(R.id.listFixture);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
-        DatabaseReference databaseReference = database.getReference("/fixtures");
+        //DatabaseReference databaseReference = database.getReference("/fixtures");
+        Query query = database.getReference("/fixtures").orderByChild("date");
 
-        databaseReference.addChildEventListener(new ChildEventListener() {
+        query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
+                fixture.setId(dataSnapshot.getKey());
                 fixtures.add(fixture);
                 adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
                 fixtureList.setAdapter(fixtureadapter);
@@ -83,7 +92,23 @@ public class tzlc_fixture_display extends AppCompatActivity {
         fixtureList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(tzlc_fixture_display.this,"Long Click", Toast.LENGTH_SHORT).show();
+                Fixture fixture = fixtures.get(position);
+
+                Calendar calendar    = Calendar.getInstance();
+                if((calendar.get(Calendar.YEAR) * 10000 + (calendar.get(Calendar.MONTH)+1)*100 + calendar.get(Calendar.DAY_OF_MONTH)) < fixture.getDate()) {
+                    if (role.equalsIgnoreCase("KFANDRAAI")) {
+                        Intent fixtureEditIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_add.class);
+                        Bundle extras = new Bundle();
+                        extras.putString("role", role);
+                        extras.putString("fixtureID", fixture.getId());
+                        extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
+                        fixtureEditIntent.putExtras(extras);
+                        startActivityForResult(fixtureEditIntent, 100);
+                    } else
+                        Toast.makeText(tzlc_fixture_display.this, "Only KFANDRAAI is allowed to edit Fixture", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(tzlc_fixture_display.this, "Previous date's Fixture can not be edited", Toast.LENGTH_SHORT).show();
+
                 return false;
             }
         });
@@ -111,6 +136,17 @@ public class tzlc_fixture_display extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if(data != null)
+        {
+            Bundle b = data.getExtras();
+            scrollIndex = b.getInt("scrollIndex", 1);
+            fixtureList.setSelectionFromTop(scrollIndex, 0);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_fixtures,menu);
 
@@ -131,5 +167,23 @@ public class tzlc_fixture_display extends AppCompatActivity {
         }
         return true;
         //return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.addFixture :
+                Intent fixtureAddIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_add.class);
+                Bundle extras  = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", "");
+                extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
+                fixtureAddIntent.putExtras(extras);
+                startActivityForResult(fixtureAddIntent,100);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

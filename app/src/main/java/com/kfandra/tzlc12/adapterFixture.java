@@ -58,7 +58,7 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
 
         holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
 
-        if (fixture.getHomeClub().equalsIgnoreCase("Blazing Eagles"))
+        if (fixture.getHomeClub().equalsIgnoreCase("Blazing Eagles") || fixture.getHomeClub().equalsIgnoreCase("Silver Sharks") || fixture.getHomeClub().equalsIgnoreCase("KITFO"))
             holder.fixtureTypeGround.setText("" + fixture.getType() + " , Papal" );
         else
             holder.fixtureTypeGround.setText("" + fixture.getType() + " , NCL" );

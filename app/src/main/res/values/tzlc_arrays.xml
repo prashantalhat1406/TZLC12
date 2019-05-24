@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fixtureType">
+        <item>League 1st Div</item>
+        <item>League 2nd Div</item>
+        <item>Combined League Match</item>
+        <item>KFANDRAAI League Cup</item>
+        <item>KFANDRAAI Cup</item>
+        <item>Friendly</item>
+    </string-array>
+
+    <string-array name="fixtureTypeShort">
+        <item>L1D</item>
+        <item>L2D</item>
+        <item>CLM</item>
+        <item>KLC</item>
+        <item>KC</item>
+        <item>FND</item>
+    </string-array>
+
+    <string-array name="fixtureSubType">
+        <item>NA</item>
+        <item>1st Round</item>
+        <item>Pre-Quarter Final</item>
+        <item>Semi Final</item>
+        <item>Final</item>
+    </string-array>
+
+    <string-array name="fixtureSubTypeShort">
+        <item>NA</item>
+        <item>1R</item>
+        <item>PQF</item>
+        <item>SF</item>
+        <item>F</item>
+    </string-array>
+</resources>

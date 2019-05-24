@@ -2,7 +2,7 @@ package com.kfandra.tzlc12;
 
 public class Fixture {
     private String id;
-    private int date;
+    private long date;
     private String homeClub;
     private String awayClub;
     private String type;
@@ -17,11 +17,11 @@ public class Fixture {
         this.id = id;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

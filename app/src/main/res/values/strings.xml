@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="sign_out">Sign Out</string>
     <string name="title_activity_tzlc_fixture_display">TZLC-12 Fixtures</string>
+    <string name="title_activity_tzlc_fixture_add">Create New Fixture</string>
 </resources>
