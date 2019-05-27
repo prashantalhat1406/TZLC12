@@ -119,7 +119,9 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
             public void onClick(View view) {
                 Fixture fixture = new Fixture();
                 fixture.setHomeClub(homeClubName.getSelectedItem().toString());
+                fixture.setHomeClubColor(clubs.get(homeClubName.getSelectedItemPosition()).getClubColor());
                 fixture.setAwayClub(awayClubName.getSelectedItem().toString());
+                fixture.setAwayClubColor(clubs.get(awayClubName.getSelectedItemPosition()).getClubColor());
                 fixture.setType(type.getSelectedItem().toString());
                 fixture.setSubtype(subtype.getSelectedItem().toString());
                 fixture.setDate(d);

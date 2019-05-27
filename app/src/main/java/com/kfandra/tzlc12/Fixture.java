@@ -4,10 +4,28 @@ public class Fixture {
     private String id;
     private long date;
     private String homeClub;
+    private String homeClubColor;
     private String awayClub;
+    private String awayClubColor;
     private String type;
     private String subtype;
     private String result;
+
+    public String getHomeClubColor() {
+        return homeClubColor;
+    }
+
+    public void setHomeClubColor(String homeClubColor) {
+        this.homeClubColor = homeClubColor;
+    }
+
+    public String getAwayClubColor() {
+        return awayClubColor;
+    }
+
+    public void setAwayClubColor(String awayClubColor) {
+        this.awayClubColor = awayClubColor;
+    }
 
     public String getId() {
         return id;

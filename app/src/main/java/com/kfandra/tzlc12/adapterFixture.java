@@ -3,6 +3,7 @@ package com.kfandra.tzlc12;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,24 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
 
         Fixture fixture = fixtures.get(position);
 
-        holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
+        String[] colorNames =  context.getResources().getStringArray(R.array.jerseycolors);
+        int[] colors =  context.getResources().getIntArray(R.array.androidcolors);
+
+        int homeColor=12;
+        for (homeColor = 0; homeColor < colorNames.length ; homeColor++) {
+            if(colorNames[homeColor].equalsIgnoreCase(fixture.getHomeClubColor()))
+                break;
+        }
+
+        int awayColor=12;
+        for (awayColor = 0; awayColor < colorNames.length ; awayColor++) {
+            if(colorNames[awayColor].equalsIgnoreCase(fixture.getAwayClubColor()))
+                break;
+        }
+
+        //holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
+        String hC = "" + "<font color='" + colors[homeColor] + "'>" + fixture.getHomeClub() + "</font>" + " vs <font color='" + colors[awayColor] + "'>" + fixture.getAwayClub() + "</font>";
+        holder.fixtureName.setText(Html.fromHtml( hC));
 
         if (fixture.getHomeClub().equalsIgnoreCase("Blazing Eagles") || fixture.getHomeClub().equalsIgnoreCase("Silver Sharks") || fixture.getHomeClub().equalsIgnoreCase("KITFO"))
             holder.fixtureTypeGround.setText("" + fixture.getType() + " , Papal" );
