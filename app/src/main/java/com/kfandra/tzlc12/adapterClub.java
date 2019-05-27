@@ -49,7 +49,7 @@ public class adapterClub extends ArrayAdapter<Club> {
 
         Club club = clubs.get(position);
 
-        holder.clubName.setText("" + club.getClubName());
+        holder.clubName.setText("" + club.getClubName() + "  ( " + club.getClubShortName() + " )");
         holder.clubManager.setText("" + club.getManagerName() + " , " + club.getManager2Name());
         holder.clubGround.setText("" + club.getHomeGround());
 
