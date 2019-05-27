@@ -49,7 +49,17 @@ public class adapterClub extends ArrayAdapter<Club> {
 
         Club club = clubs.get(position);
 
+        String[] colorNames =  context.getResources().getStringArray(R.array.jerseycolors);
+        int[] colors =  context.getResources().getIntArray(R.array.androidcolors);
+
+        int color=12;
+        for (color = 0; color < colorNames.length ; color++) {
+            if(colorNames[color].equalsIgnoreCase(club.getClubColor()))
+                break;
+        }
+
         holder.clubName.setText("" + club.getClubName() + "  ( " + club.getClubShortName() + " )");
+        holder.clubName.setTextColor(colors[color]);
         holder.clubManager.setText("" + club.getManagerName() + " , " + club.getManager2Name());
         holder.clubGround.setText("" + club.getHomeGround());
 
