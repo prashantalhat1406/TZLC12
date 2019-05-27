@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         balancesheet.setVisibility(View.GONE);
                         role = "PLAYER";
                     }
+                    TextView welcometxt = findViewById(R.id.txtwelcomeBar);
+                    welcometxt.setText("Welcome " + user.getDisplayName());
                     //Toast.makeText(MainActivity.this, user.getDisplayName() + " Signed  IN", Toast.LENGTH_LONG).show();
                 }else{
                     //signed out

@@ -15,15 +15,17 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#6200EE"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <!-- android:background="?attr/colorPrimary" -->
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent" android:orientation="horizontal"
         android:layout_height="match_parent" android:layout_weight="0.5">
-        <TextView
+        <TextView android:id="@+id/txtwelcomeBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="WELCOME TO THE TZLC STATS APP"
