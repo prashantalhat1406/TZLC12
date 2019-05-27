@@ -26,34 +26,20 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
         this.context= context;
     }
 
-    static class ViewHolder{
-        private TextView fixtureDate;
-        private TextView fixtureDay;
-        private TextView fixtureName;
-        private TextView fixtureTypeGround;
-        private TextView fixtureResult;
-    }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        ViewHolder holder;
-
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).
                     inflate(R.layout.fixtureitem,parent,false);
-            holder = new ViewHolder();
-            holder.fixtureName = (TextView)convertView.findViewById(R.id.fixtureDisplayFixture);
-            holder.fixtureTypeGround = (TextView)convertView.findViewById(R.id.fixtureDisplayType);
-            holder.fixtureResult = (TextView)convertView.findViewById(R.id.fixtureResult);
-            holder.fixtureDate = (TextView)convertView.findViewById(R.id.fixtureDisplayDate);
-            holder.fixtureDay = (TextView)convertView.findViewById(R.id.fixtureDisplayDay);
         }
-        else
-        {
-            holder = (ViewHolder) convertView.getTag();
-        }
+
+        TextView fixtureName = (TextView)convertView.findViewById(R.id.fixtureDisplayFixture);
+        TextView fixtureTypeGround = (TextView)convertView.findViewById(R.id.fixtureDisplayType);
+        TextView fixtureResult = (TextView)convertView.findViewById(R.id.fixtureResult);
+        TextView fixtureDate = (TextView)convertView.findViewById(R.id.fixtureDisplayDate);
+        TextView fixtureDay = (TextView)convertView.findViewById(R.id.fixtureDisplayDay);
 
         Fixture fixture = fixtures.get(position);
 
@@ -74,26 +60,26 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
 
         //holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
         String hC = "" + "<font color='" + colors[homeColor] + "'>" + fixture.getHomeClub() + "</font>" + " vs <font color='" + colors[awayColor] + "'>" + fixture.getAwayClub() + "</font>";
-        holder.fixtureName.setText(Html.fromHtml( hC));
+        fixtureName.setText(Html.fromHtml( hC));
 
         if (fixture.getHomeClub().equalsIgnoreCase("Blazing Eagles") || fixture.getHomeClub().equalsIgnoreCase("Silver Sharks") || fixture.getHomeClub().equalsIgnoreCase("KITFO"))
-            holder.fixtureTypeGround.setText("" + fixture.getType() + " , Papal" );
+            fixtureTypeGround.setText("" + fixture.getType() + " , Papal" );
         else
-            holder.fixtureTypeGround.setText("" + fixture.getType() + " , NCL" );
-        holder.fixtureResult.setText("" + fixture.getResult());
+            fixtureTypeGround.setText("" + fixture.getType() + " , NCL" );
+        fixtureResult.setText("" + fixture.getResult());
 
-        holder.fixtureDate.setText("" + String.format("%02d", (fixture.getDate()%100))+"/"+String.format("%02d", ((fixture.getDate()/100)%100))+"/"+fixture.getDate()/10000);
+        fixtureDate.setText("" + String.format("%02d", (fixture.getDate()%100))+"/"+String.format("%02d", ((fixture.getDate()/100)%100))+"/"+fixture.getDate()/10000);
         try {
             SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
-            Date dt1 = format1.parse(holder.fixtureDate.getText().toString());
+            Date dt1 = format1.parse(fixtureDate.getText().toString());
             DateFormat format2 = new SimpleDateFormat("EEEE");
-            holder.fixtureDay.setText("" + format2.format(dt1));
+            fixtureDay.setText("" + format2.format(dt1));
         }catch(Exception e)
         {
             Log.d("Fixture Adapter", "Invalid Date");
         }
 
-        holder.fixtureResult.setText("" + fixture.getResult());
+        fixtureResult.setText("" + fixture.getResult());
 
         return convertView;
     }

@@ -59,8 +59,13 @@ public class tzlc_fixture_display extends AppCompatActivity {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
                 fixture.setId(dataSnapshot.getKey());
                 fixtures.add(fixture);
-                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
-                fixtureList.setAdapter(fixtureadapter);
+                try {
+                    adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
+                    fixtureList.setAdapter(fixtureadapter);
+                }catch (Exception e)
+                {
+                    Toast.makeText(tzlc_fixture_display.this,e.toString(),Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,8 +50,13 @@ public class tzlc_club_display extends AppCompatActivity {
                 Club club = dataSnapshot.getValue(Club.class);
                 club.setId(dataSnapshot.getKey());
                 clubs.add(club);
-                adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.clubitem, clubs);
-                clubList.setAdapter(adapterClub);
+                try {
+                    adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.clubitem, clubs);
+                    clubList.setAdapter(adapterClub);
+                }catch (Exception e)
+                {
+                    Toast.makeText(tzlc_club_display.this,e.toString(),Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

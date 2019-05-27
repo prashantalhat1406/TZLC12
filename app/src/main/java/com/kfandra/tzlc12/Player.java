@@ -5,7 +5,7 @@ public class Player {
     private String playerName;
     private String clubName;
     private int currentValue;
-    private long orgID;
+    private String orgID;
     private int senialwombat;
 
     public String getId() {
@@ -40,11 +40,11 @@ public class Player {
         this.currentValue = currentValue;
     }
 
-    public long getOrgID() {
+    public String getOrgID() {
         return orgID;
     }
 
-    public void setOrgID(long orgID) {
+    public void setOrgID(String orgID) {
         this.orgID = orgID;
     }
 
