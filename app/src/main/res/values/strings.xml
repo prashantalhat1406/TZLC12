@@ -4,4 +4,6 @@
     <string name="sign_out">Sign Out</string>
     <string name="title_activity_tzlc_fixture_display">TZLC-12 Fixtures</string>
     <string name="title_activity_tzlc_fixture_add">Create New Fixture</string>
+    <string name="title_activity_tzlc_player_display">TZLC12 Players</string>
+    <string name="title_activity_tzlc_club_display">TZLC-12 Clubs</string>
 </resources>

@@ -41,6 +41,17 @@ public class MainActivity extends AppCompatActivity {
         //kfandraai@kfandra.com
         //MRManager@kfandra.com
         final Button clubs = findViewById(R.id.butClubs);
+        clubs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fixtureIntent = new Intent(MainActivity.this, tzlc_club_display.class);
+                Bundle extras  = new Bundle();
+                extras.putString("role", role);
+                fixtureIntent.putExtras(extras);
+                startActivity(fixtureIntent);
+            }
+        });
+
         final Button players = findViewById(R.id.butPlayer);
         final Button fixtures = findViewById(R.id.butFixtures);
         fixtures.setOnClickListener(new View.OnClickListener() {

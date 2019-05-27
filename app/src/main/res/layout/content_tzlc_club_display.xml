@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:orientation="vertical"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".tzlc_club_display"
+    tools:showIn="@layout/activity_tzlc_club_display">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="0.1" android:layout_marginTop="10dp">
+        <ListView
+            android:layout_width="match_parent" android:id="@+id/listClub"
+            android:layout_height="match_parent" >
+        </ListView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

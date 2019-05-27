@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".tzlc_club_display"
+            android:label="@string/title_activity_tzlc_club_display"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kfandra.tzlc12.MainActivity" />
+        </activity>
+        <activity
+            android:name=".tzlc_player_display"
+            android:label="@string/title_activity_tzlc_player_display"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kfandra.tzlc12.MainActivity" />
+        </activity>
+        <activity
             android:name=".tzlc_fixture_add"
             android:label="@string/title_activity_tzlc_fixture_add"
             android:parentActivityName=".tzlc_fixture_display"
