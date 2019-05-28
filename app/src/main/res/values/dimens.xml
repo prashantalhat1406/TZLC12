@@ -1,4 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="tzlcTextSize">18dp</dimen>
+    <dimen name="listFirstLine">22dp</dimen>
+    <dimen name="listSecondLine">18dp</dimen>
+    <dimen name="listThirdLine">14dp</dimen>
 </resources>

@@ -6,13 +6,13 @@
         android:layout_width="match_parent"  android:layout_weight="0.15"
         android:layout_height="match_parent" android:orientation="vertical">
         <TextView android:id="@+id/clubName"
-            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/tzlcTextSize"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/listFirstLine"
             android:layout_height="match_parent" android:text="Mutant Rhinos" android:textStyle="bold"/>
         <TextView android:id="@+id/clubManager"
-            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="14dp"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.6" android:textSize="@dimen/listSecondLine"
             android:layout_height="match_parent" android:text="Manager : Mukul Inamdar, Siddharth Chuplunkar" android:textStyle="bold"/>
         <TextView android:id="@+id/clubGround"
-            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="14dp"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.6" android:textSize="@dimen/listThirdLine"
             android:layout_height="match_parent" android:text="NCL"/>
     </LinearLayout>
 

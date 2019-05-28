@@ -40,7 +40,7 @@ public class tzlc_player_display extends AppCompatActivity {
         playerList = findViewById(R.id.listPlayer);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
-        Query query = database.getReference("/players").orderByChild("name");
+        Query query = database.getReference("/players").orderByChild("playerName");
 
         query.addChildEventListener(new ChildEventListener() {
             @Override
