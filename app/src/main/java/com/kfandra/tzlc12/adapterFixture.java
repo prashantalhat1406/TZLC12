@@ -35,7 +35,8 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
                     inflate(R.layout.fixtureitem,parent,false);
         }
 
-        TextView fixtureName = (TextView)convertView.findViewById(R.id.fixtureDisplayFixture);
+        TextView fixtureHomeClub = (TextView)convertView.findViewById(R.id.fixtureHomeClub);
+        TextView fixtureAwayClub = (TextView)convertView.findViewById(R.id.fixtureAwayClub);
         TextView fixtureTypeGround = (TextView)convertView.findViewById(R.id.fixtureDisplayType);
         TextView fixtureResult = (TextView)convertView.findViewById(R.id.fixtureResult);
         TextView fixtureDate = (TextView)convertView.findViewById(R.id.fixtureDisplayDate);
@@ -59,8 +60,12 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
         }
 
         //holder.fixtureName.setText("" + fixture.getHomeClub() + " vs " + fixture.getAwayClub());
-        String hC = "" + "<font color='" + colors[homeColor] + "'>" + fixture.getHomeClub() + "</font>" + " vs <font color='" + colors[awayColor] + "'>" + fixture.getAwayClub() + "</font>";
-        fixtureName.setText(Html.fromHtml( hC));
+        //String hC = "" + "<font color='" + colors[homeColor] + "'>" + fixture.getHomeClub() + "</font>" + " vs <font color='" + colors[awayColor] + "'>" + fixture.getAwayClub() + "</font>";
+        //fixtureName.setText(Html.fromHtml( hC));
+        fixtureHomeClub.setText(fixture.getHomeClub());
+        fixtureHomeClub.setTextColor(colors[homeColor] );
+        fixtureAwayClub.setText(fixture.getAwayClub());
+        fixtureAwayClub.setTextColor(colors[awayColor]);
 
         if (fixture.getHomeClub().equalsIgnoreCase("Blazing Eagles") || fixture.getHomeClub().equalsIgnoreCase("Silver Sharks") || fixture.getHomeClub().equalsIgnoreCase("KITFO"))
             fixtureTypeGround.setText("" + fixture.getType() + " , Papal" );
