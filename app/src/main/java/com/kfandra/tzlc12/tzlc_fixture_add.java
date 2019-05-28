@@ -35,6 +35,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
     Spinner type,subtype,homeClubName,awayClubName;
     public EditText datepicker;
     private long d;
+    String fixturehomeClubName,fixtureawayClubName;
     
 
     @Override
@@ -54,6 +55,12 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         final String fixtureID = b.getString("fixtureID");
         scrollIndex = b.getInt("scrollIndex",-1);
 
+        fixturehomeClubName = b.getString("homeClub");
+        fixtureawayClubName = b.getString("awayClub");
+        final Long fixturedate = b.getLong("date",0) ;
+        String fixturetype = b.getString("type");
+        String fixturesubtype = b.getString("subtype");
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
         DatabaseReference databaseReference = database.getReference("clubs");
         //Query getAllClubs = databaseReference.child("/clubs/").orderByChild("clubName");
@@ -68,6 +75,11 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 homeClubName.setAdapter(clubAdapter);
                 awayClubName.setAdapter(clubAdapter);
+                if(fixtureID.length() != 0)
+                {
+                    awayClubName.setSelection(clubAdapter.getPosition(fixtureawayClubName));
+                    homeClubName.setSelection(clubAdapter.getPosition(fixturehomeClubName));
+                }
             }
 
             @Override
@@ -101,17 +113,32 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         subtypeadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         subtype.setAdapter(subtypeadapter);
 
-        //final Calendar calendar = Calendar.getInstance();
         datepicker = (EditText) findViewById(R.id.edtFixtureDate);
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-                DatePickerDialog datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                DatePickerDialog datePickerDialog;
+                if(fixtureID.length() != 0)
+                    datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,fixturedate.intValue()/10000,((fixturedate.intValue()/100)%100)-1,(fixturedate.intValue()%100));
+                else
+                    datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
+
             }
         });
+
+        getSupportActionBar().setTitle("Create New Fixture");
+
+        if(fixtureID.length() != 0)
+        {
+            type.setSelection(typeadapter.getPosition(fixturetype));
+            subtype.setSelection(subtypeadapter.getPosition(fixturesubtype));
+            datepicker.setText(""+String.format("%02d", (fixturedate%100))+"/"+String.format("%02d", ((fixturedate/100)%100))+"/"+fixturedate/10000);
+            d=fixturedate;
+            getSupportActionBar().setTitle("Edit Fixture");
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

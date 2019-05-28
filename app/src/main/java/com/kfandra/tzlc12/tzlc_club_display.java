@@ -50,13 +50,8 @@ public class tzlc_club_display extends AppCompatActivity {
                 Club club = dataSnapshot.getValue(Club.class);
                 club.setId(dataSnapshot.getKey());
                 clubs.add(club);
-                try {
-                    adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.clubitem, clubs);
-                    clubList.setAdapter(adapterClub);
-                }catch (Exception e)
-                {
-                    Toast.makeText(tzlc_club_display.this,e.toString(),Toast.LENGTH_LONG).show();
-                }
+                adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.clubitem, clubs);
+                clubList.setAdapter(adapterClub);
             }
 
             @Override

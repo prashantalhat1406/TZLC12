@@ -59,18 +59,12 @@ public class tzlc_fixture_display extends AppCompatActivity {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
                 fixture.setId(dataSnapshot.getKey());
                 fixtures.add(fixture);
-                try {
-                    adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
-                    fixtureList.setAdapter(fixtureadapter);
-                }catch (Exception e)
-                {
-                    Toast.makeText(tzlc_fixture_display.this,e.toString(),Toast.LENGTH_LONG).show();
-                }
+                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
+                fixtureList.setAdapter(fixtureadapter);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override
@@ -113,6 +107,11 @@ public class tzlc_fixture_display extends AppCompatActivity {
                         Bundle extras = new Bundle();
                         extras.putString("role", role);
                         extras.putString("fixtureID", fixture.getId());
+                        extras.putString("homeClub", fixture.getHomeClub());
+                        extras.putString("awayClub",fixture.getAwayClub());
+                        extras.putLong("date", fixture.getDate());
+                        extras.putString("type",fixture.getType());
+                        extras.putString("subtype",fixture.getSubtype());
                         extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
                         fixtureEditIntent.putExtras(extras);
                         startActivityForResult(fixtureEditIntent, 100);
