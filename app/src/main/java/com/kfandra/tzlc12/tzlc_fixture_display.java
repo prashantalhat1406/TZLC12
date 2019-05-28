@@ -59,7 +59,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
                 fixture.setId(dataSnapshot.getKey());
                 fixtures.add(fixture);
-                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.fixtureitem, fixtures);
+                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.listitemfixture, fixtures);
                 fixtureList.setAdapter(fixtureadapter);
             }
 
@@ -129,7 +129,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
         /*Query recent = databaseReference.limitToFirst(10);
         FirebaseListOptions<Fixture> options = new FirebaseListOptions.Builder<Fixture>()
                 .setQuery(recent,Fixture.class)
-                .setLayout(R.layout.fixtureitem)
+                .setLayout(R.layout.listitemfixture)
                 .build();*/
 
 

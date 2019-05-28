@@ -3,13 +3,9 @@ package com.kfandra.tzlc12;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +46,7 @@ public class tzlc_club_display extends AppCompatActivity {
                 Club club = dataSnapshot.getValue(Club.class);
                 club.setId(dataSnapshot.getKey());
                 clubs.add(club);
-                adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.clubitem, clubs);
+                adapterClub adapterClub = new adapterClub(tzlc_club_display.this, R.layout.listitemclub, clubs);
                 clubList.setAdapter(adapterClub);
             }
 
@@ -74,17 +70,6 @@ public class tzlc_club_display extends AppCompatActivity {
 
             }
         });
-
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

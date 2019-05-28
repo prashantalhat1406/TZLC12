@@ -44,15 +44,27 @@ public class MainActivity extends AppCompatActivity {
         clubs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent fixtureIntent = new Intent(MainActivity.this, tzlc_club_display.class);
+                Intent clubIntent = new Intent(MainActivity.this, tzlc_club_display.class);
                 Bundle extras  = new Bundle();
                 extras.putString("role", role);
-                fixtureIntent.putExtras(extras);
-                startActivity(fixtureIntent);
+                clubIntent.putExtras(extras);
+                startActivity(clubIntent);
             }
         });
 
         final Button players = findViewById(R.id.butPlayer);
+        players.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent playerIntent = new Intent(MainActivity.this, tzlc_player_display.class);
+                Bundle extras  = new Bundle();
+                extras.putString("role", role);
+                playerIntent.putExtras(extras);
+                startActivity(playerIntent);
+            }
+        });
+
+
         final Button fixtures = findViewById(R.id.butFixtures);
         fixtures.setOnClickListener(new View.OnClickListener() {
             @Override

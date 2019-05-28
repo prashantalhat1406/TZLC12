@@ -3,7 +3,6 @@ package com.kfandra.tzlc12;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +31,7 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.fixtureitem,parent,false);
+                    inflate(R.layout.listitemfixture,parent,false);
         }
 
         TextView fixtureHomeClub = (TextView)convertView.findViewById(R.id.fixtureHomeClub);

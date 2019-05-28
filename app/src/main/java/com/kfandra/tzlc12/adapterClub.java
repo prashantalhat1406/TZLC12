@@ -27,7 +27,7 @@ public class adapterClub extends ArrayAdapter<Club> {
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.clubitem,parent,false);
+                    inflate(R.layout.listitemclub,parent,false);
         }
 
         Club club = clubs.get(position);
