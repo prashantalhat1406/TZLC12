@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
         //DatabaseReference databaseReference = database.getReference("/fixtures");
-        Query query = database.getReference("/pages").orderByChild("pageName");
+        //Query query = database.getReference("/pages").orderByChild("pageName");
+        Query query = database.getReference("/pages");
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -105,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                         extras.putString("role", role);
                         fixtureIntent.putExtras(extras);
                         startActivity(fixtureIntent);
+                        break;
+                    default:
+                        Toast.makeText(MainActivity.this, "Not yet implemented", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -182,8 +187,9 @@ public class MainActivity extends AppCompatActivity {
                         balancesheet.setVisibility(View.GONE);*/
                         role = "PLAYER";
                     }
-                    TextView welcometxt = findViewById(R.id.txtwelcomeBar);
-                    welcometxt.setText("Welcome " + user.getDisplayName());
+                    getSupportActionBar().setTitle("TZLC-12   Welcome " + user.getDisplayName());
+                    //TextView welcometxt = findViewById(R.id.txtwelcomeBar);
+                    //welcometxt.setText("Welcome " + user.getDisplayName());
                     //Toast.makeText(MainActivity.this, user.getDisplayName() + " Signed  IN", Toast.LENGTH_LONG).show();
                 }else{
                     //signed out
