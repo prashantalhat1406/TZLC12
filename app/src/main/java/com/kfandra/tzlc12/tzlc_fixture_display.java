@@ -146,6 +146,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.app_name) + " Fixtures");
     }
 
     @Override

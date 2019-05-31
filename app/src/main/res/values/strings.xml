@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">TZLC12</string>
+    <string name="app_name">TZLC-12</string>
     <string name="action_settings">Settings</string>
     <string name="sign_out">Sign Out</string>
-    <string name="title_activity_tzlc_fixture_display">TZLC-12 Fixtures</string>
-    <string name="title_activity_tzlc_fixture_add">TZLC-12 Create New Fixture</string>
-    <string name="title_activity_tzlc_player_display">TZLC12 Players</string>
-    <string name="title_activity_tzlc_club_display">TZLC-12 Clubs</string>
+    <string name="title_activity_tzlc_fixture_display">Fixtures</string>
+    <string name="title_activity_tzlc_fixture_add">Create New Fixture</string>
+    <string name="title_activity_tzlc_player_display">Players</string>
+    <string name="title_activity_tzlc_club_display">Clubs</string>
 </resources>

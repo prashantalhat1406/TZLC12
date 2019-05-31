@@ -73,6 +73,7 @@ public class tzlc_player_display extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.app_name) + " Players");
     }
 
 }

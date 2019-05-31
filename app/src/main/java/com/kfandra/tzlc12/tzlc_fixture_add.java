@@ -129,7 +129,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
             }
         });
 
-        getSupportActionBar().setTitle("Create New Fixture");
+        getSupportActionBar().setTitle(getString(R.string.app_name) + " Create New Fixture");
 
         if(fixtureID.length() != 0)
         {
@@ -137,7 +137,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
             subtype.setSelection(subtypeadapter.getPosition(fixturesubtype));
             datepicker.setText(""+String.format("%02d", (fixturedate%100))+"/"+String.format("%02d", ((fixturedate/100)%100))+"/"+fixturedate/10000);
             d=fixturedate;
-            getSupportActionBar().setTitle("Edit Fixture");
+            getSupportActionBar().setTitle(getString(R.string.app_name) + " Edit Fixture");
         }
 
         FloatingActionButton fab = findViewById(R.id.fab);
