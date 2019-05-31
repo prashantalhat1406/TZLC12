@@ -47,7 +47,10 @@ public class adapterClub extends ArrayAdapter<Club> {
 
         clubName.setText("" + club.getClubName() + "  ( " + club.getClubShortName() + " )");
         clubName.setTextColor(colors[color]);
-        clubManager.setText("" + club.getManagerName() + " , " + club.getManager2Name());
+        if(club.getManager2Name().length() != 0)
+            clubManager.setText("" + club.getManagerName() + " , " + club.getManager2Name());
+        else
+            clubManager.setText("" + club.getManagerName());
         clubGround.setText("" + club.getHomeGround());
 
         return convertView;
