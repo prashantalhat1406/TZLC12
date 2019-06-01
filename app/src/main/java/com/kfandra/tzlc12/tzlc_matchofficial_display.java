@@ -82,8 +82,12 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent fixtureEditIntent = new Intent(tzlc_matchofficial_display.this, tzlc_matchofficial_add.class);
+                Bundle extras = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", fixtureID);
+                fixtureEditIntent.putExtras(extras);
+                startActivityForResult(fixtureEditIntent, 100);
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -99,5 +103,16 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
         setResult(100, returnI);
         finish();
         //super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if(data != null)
+        {
+            Bundle b = data.getExtras();
+            role = b.getString("role");
+            fixtureID = b.getString("fixtureID");
+        }
     }
 }

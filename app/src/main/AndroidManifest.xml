@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".tzlc_matchofficial_add"
+            android:label="@string/title_activity_tzlc_matchofficial_add"
+            android:parentActivityName=".tzlc_matchofficial_display"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kfandra.tzlc12.tzlc_matchofficial_display" />
+        </activity>
+        <activity
             android:name=".tzlc_fixture_details"
             android:label="@string/title_activity_tzlc_fixture_details"
             android:parentActivityName=".tzlc_fixture_display"

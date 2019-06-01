@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Page balancesheet = new Page("Balance Sheet", "Manage Balance Sheet for Club");
 
         pages.add(clubs);
-        pages.add(players);
         pages.add(fixtures);
+        pages.add(players);
         pages.add(balancesheet);
 
         adapterPage adapterPage = new adapterPage(MainActivity.this, R.layout.listitempage, pages);
