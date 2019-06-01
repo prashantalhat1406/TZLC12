@@ -9,4 +9,5 @@
     <string name="title_activity_tzlc_matchofficial_display">Match Official</string>
     <string name="title_activity_tzlc_fixture_details">Fixture Details</string>
     <string name="title_activity_tzlc_matchofficials_display2">Match Officials</string>
+    <string name="title_activity_tzlc_matchofficials_display">tzlc_matchofficials_display</string>
 </resources>

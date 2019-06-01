@@ -60,7 +60,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
                         extras.putString("role", role);
                         extras.putString("fixtureID",fixtureID);
                         matchofficialIntent.putExtras(extras);
-                        startActivity(matchofficialIntent);
+                        startActivityForResult(matchofficialIntent,100);
                         //finish();
                         break;
                     default:
@@ -83,4 +83,11 @@ public class tzlc_fixture_details extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        Bundle bundle = getIntent().getExtras();
+        role = bundle.getString("role");
+        fixtureID = bundle.getString("fixtureID");
+        super.onResume();
+    }
 }

@@ -49,10 +49,21 @@ public class MainActivity extends AppCompatActivity {
         pages = new ArrayList<Page>();
         pageList = findViewById(R.id.listPage);
 
+        Page clubs = new Page("Clubs","Clubs in TZLC12");
+        Page players = new Page("Players", "Players in TZLC12");
+        Page fixtures = new Page("Fixtures", "Fixtures for TZLC12");
+        Page balancesheet = new Page("Balance Sheet", "Manage Balance Sheet for Club");
+
+        pages.add(clubs);
+        pages.add(players);
+        pages.add(fixtures);
+        pages.add(balancesheet);
+
+        adapterPage adapterPage = new adapterPage(MainActivity.this, R.layout.listitempage, pages);
+        pageList.setAdapter(adapterPage);
+/*
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
-        //DatabaseReference databaseReference = database.getReference("/fixtures");
-        //Query query = database.getReference("/pages").orderByChild("pageName");
-        Query query = database.getReference("/pages");
+         Query query = database.getReference("/pages");
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -82,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         pageList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

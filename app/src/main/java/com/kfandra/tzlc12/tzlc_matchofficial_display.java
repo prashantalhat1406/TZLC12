@@ -1,5 +1,6 @@
 package com.kfandra.tzlc12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -85,7 +86,18 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent returnI = new Intent();
+        Bundle extras = new Bundle();
+        extras.putString("role", role);
+        extras.putString("fixtureID", fixtureID);
+        returnI.putExtras(extras);
+        setResult(100, returnI);
+        finish();
+        //super.onBackPressed();
+    }
 }
