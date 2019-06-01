@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/sortClub" android:title="Sort by Club" app:showAsAction="never"/>
-    <item android:id="@+id/sortPlayer" android:title="Sort by Player" app:showAsAction="never"/>
+    <item android:id="@+id/sortPlayer" android:title="Sort by Player ^" app:showAsAction="never"/>
     <item android:id="@+id/sortValue" android:title="Sort by Value" app:showAsAction="never"/>
 </menu>

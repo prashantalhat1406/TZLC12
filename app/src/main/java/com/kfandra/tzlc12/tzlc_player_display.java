@@ -121,12 +121,27 @@ public class tzlc_player_display extends AppCompatActivity {
                 playerList.setAdapter(adapterPlayer);
                 break;
             case R.id.sortPlayer :
-                Collections.sort(players, new Comparator<Player>() {
-                    @Override
-                    public int compare(Player o1, Player o2) {
-                        return o1.getPlayerName().compareToIgnoreCase(o2.getPlayerName());
-                    }
-                });
+
+                if (item.getTitle().charAt(item.getTitle().length()-1) == '^' )
+                {
+                    item.setTitle("Sort by Player v");
+                    Collections.sort(players, new Comparator<Player>() {
+                        @Override
+                        public int compare(Player o1, Player o2) {
+                            return o1.getPlayerName().compareToIgnoreCase(o2.getPlayerName());
+                        }
+                    });
+                }
+                else
+                {
+                    item.setTitle("Sort by Player ^");
+                    Collections.sort(players, new Comparator<Player>() {
+                        @Override
+                        public int compare(Player o1, Player o2) {
+                            return o2.getPlayerName().compareToIgnoreCase(o1.getPlayerName());
+                        }
+                    });
+                }
                 adapterPlayer = new adapterPlayer(tzlc_player_display.this, R.layout.listitemplayer, players);
                 playerList.setAdapter(adapterPlayer);
                 break;
