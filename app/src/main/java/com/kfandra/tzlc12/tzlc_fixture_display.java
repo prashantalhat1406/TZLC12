@@ -86,12 +86,26 @@ public class tzlc_fixture_display extends AppCompatActivity {
         fixtureList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(tzlc_fixture_display.this,"Single Click", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(tzlc_fixture_display.this,"Single Click", Toast.LENGTH_SHORT).show();
                 /*for(int a = 0; a < parent.getChildCount(); a++)
                 {
                     parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
                 }
                 view.setBackgroundColor(Color.GREEN);*/
+                Fixture fixture = fixtures.get(position);
+                Intent fixtureEditIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_details.class);
+                Bundle extras = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", fixture.getId());
+                extras.putString("homeClub", fixture.getHomeClub());
+                extras.putString("awayClub",fixture.getAwayClub());
+                extras.putLong("date", fixture.getDate());
+                extras.putString("type",fixture.getType());
+                extras.putString("subtype",fixture.getSubtype());
+                extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
+                fixtureEditIntent.putExtras(extras);
+                startActivityForResult(fixtureEditIntent, 100);
+
             }
         });
 
@@ -115,6 +129,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
                         extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
                         fixtureEditIntent.putExtras(extras);
                         startActivityForResult(fixtureEditIntent, 100);
+
                     } else
                         Toast.makeText(tzlc_fixture_display.this, "Only KFANDRAAI is allowed to edit Fixture", Toast.LENGTH_SHORT).show();
                 }else

@@ -6,4 +6,7 @@
     <string name="title_activity_tzlc_fixture_add">Create New Fixture</string>
     <string name="title_activity_tzlc_player_display">Players</string>
     <string name="title_activity_tzlc_club_display">Clubs</string>
+    <string name="title_activity_tzlc_matchofficial_display">Match Official</string>
+    <string name="title_activity_tzlc_fixture_details">Fixture Details</string>
+    <string name="title_activity_tzlc_matchofficials_display2">Match Officials</string>
 </resources>

@@ -9,6 +9,14 @@ public class Page {
         return id;
     }
 
+    public Page() {
+    }
+
+    public Page(String pageName, String pageInfo) {
+        this.pageName = pageName;
+        this.pageInfo = pageInfo;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="100dp" android:descendantFocusability="blocksDescendants">
+    <LinearLayout
+        android:layout_width="match_parent"  android:layout_weight="0.15"
+        android:layout_height="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="0.2">
+            <TextView android:id="@+id/moName"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.3" android:textSize="@dimen/listFirstLine"
+                android:layout_height="match_parent" android:text="Prashant Alhat" android:textStyle="bold"/>
+            <TextView android:id="@+id/moRole"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine"
+                android:layout_height="match_parent" android:text="Ball Boy" android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="0.3">
+            <TextView android:id="@+id/moClub"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="@dimen/listSecondLine"
+                android:layout_height="match_parent" android:text="Mutant Rhino"/>
+            <!--<TextView android:id="@+id/playerOrg"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.5" android:textSize="14dp"
+                android:layout_height="match_parent" android:text="NCL"/>-->
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
