@@ -160,7 +160,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
         invalidateOptionsMenu();
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.app_name) + " Fixtures");
     }
 
@@ -196,6 +196,17 @@ public class tzlc_fixture_display extends AppCompatActivity {
         }
         return true;
         //return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnI = new Intent();
+        Bundle extras = new Bundle();
+        extras.putString("role", role);
+        returnI.putExtras(extras);
+        setResult(100, returnI);
+        finish();
+        //super.onBackPressed();
     }
 
     @Override

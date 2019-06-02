@@ -75,7 +75,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -84,6 +84,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
         {
             Bundle b = data.getExtras();
             scrollIndex = b.getInt("scrollIndex", 1);
+            role = b.getString("role");
             //fixtureList.setSelectionFromTop(scrollIndex, 0);
         }
     }
@@ -94,5 +95,17 @@ public class tzlc_fixture_details extends AppCompatActivity {
         role = bundle.getString("role");
         fixtureID = bundle.getString("fixtureID");
         super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnI = new Intent();
+        Bundle extras = new Bundle();
+        extras.putString("role", role);
+        extras.putString("fixtureID", fixtureID);
+        returnI.putExtras(extras);
+        setResult(100, returnI);
+        finish();
+        //super.onBackPressed();
     }
 }

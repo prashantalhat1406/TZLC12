@@ -52,7 +52,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
         matchofficialList = findViewById(R.id.listMatchOfficials);
 
         database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
-        query = database.getReference("/matchOfficials/"+fixtureID).orderByChild("playerName");
+        query = database.getReference("/matchOfficials/"+fixtureID).orderByChild("role");
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

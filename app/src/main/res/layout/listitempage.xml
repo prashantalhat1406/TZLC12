@@ -6,10 +6,10 @@
         android:layout_width="match_parent"  android:layout_weight="0.15"
         android:layout_height="match_parent" android:orientation="vertical">
         <TextView android:id="@+id/pageName"
-            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.4" android:textSize="@dimen/pageFont"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.4" android:textSize="@dimen/pageFont" android:textColor="#000075"
             android:layout_height="match_parent" android:text="Fixtures" android:textStyle="bold"/>
         <TextView android:id="@+id/pageInfo"
-            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.6" android:textSize="@dimen/listSecondLine"
+            android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.6" android:textSize="@dimen/listSecondLine" android:textColor="#000075"
             android:layout_height="match_parent" android:text="View fixtures for current season" />
     </LinearLayout>
 </LinearLayout>
