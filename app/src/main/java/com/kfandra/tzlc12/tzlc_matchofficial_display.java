@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -82,6 +83,26 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             }
         });
 
+        matchofficialList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MatchOfficial matchOfficial = matchOfficials.get(position);
+                Intent MOEditIntent = new Intent(tzlc_matchofficial_display.this, tzlc_matchofficial_add.class);
+                Bundle extras = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", fixtureID);
+                extras.putString("moID", matchOfficial.getId());
+                extras.putString("awayClub",awayClub);
+                extras.putString("homeClub", homeClub);
+                extras.putString("moClub",matchOfficial.getClubName());
+                extras.putString("moPlayer",matchOfficial.getPlayerName());
+                extras.putString("moDuty",matchOfficial.getRole());
+                extras.putInt("scrollIndex", matchofficialList.getFirstVisiblePosition());
+                MOEditIntent.putExtras(extras);
+                startActivityForResult(MOEditIntent, 100);
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +113,6 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                 extras.putString("fixtureID", fixtureID);
                 extras.putString("homeClub", homeClub);
                 extras.putString("awayClub",awayClub);
-
                 fixtureEditIntent.putExtras(extras);
                 startActivityForResult(fixtureEditIntent, 100);
             }
@@ -120,6 +140,8 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             Bundle b = data.getExtras();
             role = b.getString("role");
             fixtureID = b.getString("fixtureID");
+            scrollIndex = b.getInt("scrollIndex", 1);
+            matchofficialList.setSelectionFromTop(scrollIndex, 0);
         }
     }
 }

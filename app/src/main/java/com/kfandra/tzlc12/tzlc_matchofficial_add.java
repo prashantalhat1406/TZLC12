@@ -26,7 +26,7 @@ import java.util.List;
 
 public class tzlc_matchofficial_add extends AppCompatActivity {
 
-    private String  fixtureID,homeClub,awayClub;
+    private String  fixtureID,homeClub,awayClub,moClub,moPlayer,moDuty,moID;
     private String role;
     private List<Club> clubs;
     private List<String> clubNames;
@@ -46,6 +46,11 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         fixtureID = bundle.getString("fixtureID");
         homeClub = bundle.getString("homeClub");
         awayClub = bundle.getString("awayClub");
+        moClub = bundle.getString("moClub");
+        moPlayer = bundle.getString("moPlayer");
+        moDuty = bundle.getString("moDuty");
+        moID = bundle.getString("moID");
+
 
         clubSpinner = findViewById(R.id.spnMOAddClub);
         playerSpinner = findViewById(R.id.spnMOAddPlayer);
@@ -68,6 +73,9 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> clubAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,clubNames);
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 clubSpinner.setAdapter(clubAdapter);
+                if(moID.length() !=0)
+                    clubSpinner.setSelection(clubAdapter.getPosition(moClub));
+
             }
 
             @Override
@@ -137,6 +145,8 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> playerAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,playersClub);
                 playerAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 playerSpinner.setAdapter(playerAdapter);
+                if(moID.length() !=0)
+                    playerSpinner.setSelection(playerAdapter.getPosition(moPlayer));
 
             }
 
@@ -151,6 +161,11 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         modutyadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         dutySpinner.setAdapter(modutyadapter);
 
+        if(moID.length() != 0)
+        {
+            dutySpinner.setSelection(modutyadapter.getPosition(moDuty));
+        }
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -162,17 +177,17 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 matchOfficial.setPlayeName(playerSpinner.getSelectedItem().toString());
                 matchOfficial.setRole(dutySpinner.getSelectedItem().toString());
 
-                DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
-                databaseReference.push().setValue(matchOfficial);
+                //DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                //databaseReference.push().setValue(matchOfficial);
 
-                /*if (fixtureID.length() != 0) {
-                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                if (moID.length() != 0) {
+                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID+"/"+moID);
                     databaseReference.setValue(matchOfficial);
 
                 } else {
                     DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
                     databaseReference.push().setValue(matchOfficial);
-                }*/
+                }
 
                 Intent returnI = new Intent();
                 Bundle extras = new Bundle();
