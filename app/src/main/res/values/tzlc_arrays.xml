@@ -33,4 +33,13 @@
         <item>SF</item>
         <item>F</item>
     </string-array>
+    <string-array name="matchOfficialDuty">
+        <item>Main Referee</item>
+        <item>Asst. Referee</item>
+        <item>SR</item>
+        <item>VCM-1</item>
+        <item>VCM-2</item>
+        <item>VCM-3</item>
+        <item>Ball Boy</item>
+    </string-array>
 </resources>

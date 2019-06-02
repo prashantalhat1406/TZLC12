@@ -23,7 +23,7 @@ import java.util.List;
 public class tzlc_matchofficial_display extends AppCompatActivity {
 
 
-    private String role;
+    private String role,homeClub,awayClub;
     private List<MatchOfficial> matchOfficials;
     ListView matchofficialList;;
     public int scrollIndex=0;
@@ -41,6 +41,10 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
         fixtureID = bundle.getString("fixtureID");
+        homeClub = bundle.getString("homeClub");
+        awayClub = bundle.getString("awayClub");
+
+
 
         matchOfficials = new ArrayList<MatchOfficial>();
         matchofficialList = findViewById(R.id.listMatchOfficials);
@@ -86,6 +90,9 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                 Bundle extras = new Bundle();
                 extras.putString("role", role);
                 extras.putString("fixtureID", fixtureID);
+                extras.putString("homeClub", homeClub);
+                extras.putString("awayClub",awayClub);
+
                 fixtureEditIntent.putExtras(extras);
                 startActivityForResult(fixtureEditIntent, 100);
             }

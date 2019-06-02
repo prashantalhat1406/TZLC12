@@ -168,7 +168,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
 
                     Intent returnI = new Intent();
                     Bundle extras = new Bundle();
-                    extras.putInt("scrollIndex", scrollIndex);
+                    extras.putInt("role", scrollIndex);
                     returnI.putExtras(extras);
                     setResult(100, returnI);
                     finish();

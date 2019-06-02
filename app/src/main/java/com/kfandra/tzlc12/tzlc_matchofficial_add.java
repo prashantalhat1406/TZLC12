@@ -1,5 +1,6 @@
 package com.kfandra.tzlc12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -24,12 +26,12 @@ import java.util.List;
 
 public class tzlc_matchofficial_add extends AppCompatActivity {
 
-    private String  fixtureID;
+    private String  fixtureID,homeClub,awayClub;
     private String role;
     private List<Club> clubs;
     private List<String> clubNames;
     private List<Player> players;
-    Spinner clubSpinner,playerSpinner;
+    Spinner clubSpinner,playerSpinner,dutySpinner;
     FirebaseDatabase database;
 
     @Override
@@ -42,9 +44,12 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
         fixtureID = bundle.getString("fixtureID");
+        homeClub = bundle.getString("homeClub");
+        awayClub = bundle.getString("awayClub");
 
         clubSpinner = findViewById(R.id.spnMOAddClub);
         playerSpinner = findViewById(R.id.spnMOAddPlayer);
+
 
         clubNames = new ArrayList<String>();
         players = new ArrayList<Player>();
@@ -57,7 +62,9 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 Club club = dataSnapshot.getValue(Club.class);
                 //club.setId(dataSnapshot.getKey());
                 //clubs.add(club);
-                clubNames.add(club.getClubName());
+                if(club.getOrganization()  == 0)
+                    if(!club.getClubName().equals(homeClub) && !club.getClubName().equals(awayClub))
+                        clubNames.add(club.getClubName());
                 ArrayAdapter<String> clubAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,clubNames);
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 clubSpinner.setAdapter(clubAdapter);
@@ -139,12 +146,41 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
             }
         });
 
+        dutySpinner = findViewById(R.id.spnMOAddDuty);
+        ArrayAdapter<CharSequence> modutyadapter = ArrayAdapter.createFromResource(this,R.array.matchOfficialDuty,R.layout.layout_dropdown_item);
+        modutyadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
+        dutySpinner.setAdapter(modutyadapter);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                MatchOfficial matchOfficial = new MatchOfficial();
+                matchOfficial.setClubName(clubSpinner.getSelectedItem().toString());
+                matchOfficial.setPlayeName(playerSpinner.getSelectedItem().toString());
+                matchOfficial.setRole(dutySpinner.getSelectedItem().toString());
+
+                DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                databaseReference.push().setValue(matchOfficial);
+
+                /*if (fixtureID.length() != 0) {
+                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                    databaseReference.setValue(matchOfficial);
+
+                } else {
+                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                    databaseReference.push().setValue(matchOfficial);
+                }*/
+
+                Intent returnI = new Intent();
+                Bundle extras = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", fixtureID);
+                returnI.putExtras(extras);
+                setResult(100, returnI);
+                finish();
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

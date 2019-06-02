@@ -20,7 +20,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
     private List<Page> fixturedetails;
     ListView fixtureDetailsList;
     private String role;
-    private String  fixtureID;
+    private String  fixtureID,homeClub,awayClub;
     public int scrollIndex=0;
 
     @Override
@@ -33,6 +33,9 @@ public class tzlc_fixture_details extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
         fixtureID = bundle.getString("fixtureID");
+        homeClub = bundle.getString("homeClub");
+        awayClub = bundle.getString("awayClub");
+
 
 
         fixturedetails = new ArrayList<Page>();
@@ -59,6 +62,8 @@ public class tzlc_fixture_details extends AppCompatActivity {
                         Intent matchofficialIntent = new Intent(tzlc_fixture_details.this, tzlc_matchofficial_display.class);
                         extras.putString("role", role);
                         extras.putString("fixtureID",fixtureID);
+                        extras.putString("homeClub", homeClub);
+                        extras.putString("awayClub",awayClub);
                         matchofficialIntent.putExtras(extras);
                         startActivityForResult(matchofficialIntent,100);
                         //finish();
