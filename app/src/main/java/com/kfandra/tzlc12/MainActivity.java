@@ -86,14 +86,11 @@ public class MainActivity extends AppCompatActivity {
                         fixtureIntent.putExtras(extras);
                         startActivity(fixtureIntent);
                         break;
-                    case "Match Officials":
-                        Intent matchofficialIntent = new Intent(MainActivity.this, tzlc_matchofficial_display.class);
-                        extras.putString("role", role);
-                        matchofficialIntent.putExtras(extras);
-                        startActivity(matchofficialIntent);
+                    case "Balance Sheet":
+                        Toast.makeText(MainActivity.this, "Only KFANDRAAI and Managers have access to this page", Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        Toast.makeText(MainActivity.this, "Not yet implemented", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Default", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
