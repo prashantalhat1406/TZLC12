@@ -1,16 +1,14 @@
 package com.kfandra.tzlc12;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -29,7 +27,7 @@ public class tzlc_player_display extends AppCompatActivity {
     private String role;
     private List<Player> players;
     ListView playerList;
-    public int scrollIndex=0;
+    //public int scrollIndex=0;
     Query query;
     FirebaseDatabase database;
 
@@ -43,7 +41,7 @@ public class tzlc_player_display extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
 
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
         playerList = findViewById(R.id.listPlayer);
 
         database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
@@ -150,7 +148,8 @@ public class tzlc_player_display extends AppCompatActivity {
                 Collections.sort(players, new Comparator<Player>() {
                     @Override
                     public int compare(Player o1, Player o2) {
-                        return (o1.getCurrentValue() > o2.getCurrentValue() ? -1 : o1.getCurrentValue() == o2.getCurrentValue() ? 0 : 1);
+                        //return (o1.getCurrentValue() > o2.getCurrentValue() ? -1 : o1.getCurrentValue() == o2.getCurrentValue() ? 0 : 1);
+                        return  Integer.compare(o1.getCurrentValue(),o2.getCurrentValue());
                     }
                 });
                 adapterPlayer = new adapterPlayer(tzlc_player_display.this, R.layout.listitemplayer, players);

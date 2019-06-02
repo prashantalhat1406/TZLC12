@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -27,7 +26,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
 
     private String role,homeClub,awayClub;
     private List<MatchOfficial> matchOfficials;
-    ListView matchofficialList;;
+    ListView matchofficialList;
     public int scrollIndex=0;
     Query query;
     FirebaseDatabase database;
@@ -48,7 +47,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
 
 
 
-        matchOfficials = new ArrayList<MatchOfficial>();
+        matchOfficials = new ArrayList<>();
         matchofficialList = findViewById(R.id.listMatchOfficials);
 
         database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,8 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,8 +46,8 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         homeClubName = findViewById(R.id.spnHomeClub);
         awayClubName = findViewById(R.id.spnAwayClub);
 
-        clubs = new ArrayList<Club>();
-        clubNames = new ArrayList<String>();
+        clubs = new ArrayList<>();
+        clubNames = new ArrayList<>();
 
         Bundle b = getIntent().getExtras();
         final String fixtureID = b.getString("fixtureID");
@@ -113,7 +111,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         subtypeadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         subtype.setAdapter(subtypeadapter);
 
-        datepicker = (EditText) findViewById(R.id.edtFixtureDate);
+        datepicker =  findViewById(R.id.edtFixtureDate);
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

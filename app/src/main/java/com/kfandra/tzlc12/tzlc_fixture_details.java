@@ -3,8 +3,6 @@ package com.kfandra.tzlc12;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -38,7 +36,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
 
 
 
-        fixturedetails = new ArrayList<Page>();
+        fixturedetails = new ArrayList<>();
         fixtureDetailsList = findViewById(R.id.listFixtureDetails);
 
         Page stats = new Page("Stats","View Stats of current fixture");

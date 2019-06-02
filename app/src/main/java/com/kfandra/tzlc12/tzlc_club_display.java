@@ -21,7 +21,7 @@ public class tzlc_club_display extends AppCompatActivity {
     private String role;
     private List<Club> clubs;
     ListView clubList;
-    public int scrollIndex=0;
+    //public int scrollIndex=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class tzlc_club_display extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
 
-        clubs = new ArrayList<Club>();
+        clubs = new ArrayList<>();
         clubList = findViewById(R.id.listClub);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
