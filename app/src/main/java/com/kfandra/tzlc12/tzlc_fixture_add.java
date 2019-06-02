@@ -75,7 +75,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 homeClubName.setAdapter(clubAdapter);
                 awayClubName.setAdapter(clubAdapter);
-                if(fixtureID.length() != 0)
+                if(fixtureID != null )
                 {
                     awayClubName.setSelection(clubAdapter.getPosition(fixtureawayClubName));
                     homeClubName.setSelection(clubAdapter.getPosition(fixturehomeClubName));
@@ -119,7 +119,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 DatePickerDialog datePickerDialog;
-                if(fixtureID.length() != 0)
+                if(fixtureID != null )
                     datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,fixturedate.intValue()/10000,((fixturedate.intValue()/100)%100)-1,(fixturedate.intValue()%100));
                 else
                     datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
@@ -131,7 +131,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
 
         getSupportActionBar().setTitle(getString(R.string.app_name) + " Create New Fixture");
 
-        if(fixtureID.length() != 0)
+        if(fixtureID != null)
         {
             type.setSelection(typeadapter.getPosition(fixturetype));
             subtype.setSelection(subtypeadapter.getPosition(fixturesubtype));
@@ -157,7 +157,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
                 if(fixture.getHomeClub().equalsIgnoreCase(fixture.getAwayClub()))
                     Toast.makeText(tzlc_fixture_add.this,"Error !! Home and Away Club can not be same",Toast.LENGTH_SHORT).show();
                 else {
-                    if (fixtureID.length() != 0) {
+                    if (fixtureID != null) {
                         DatabaseReference databaseReference = database.getReference("fixtures/" + fixtureID);
                         databaseReference.setValue(fixture);
 

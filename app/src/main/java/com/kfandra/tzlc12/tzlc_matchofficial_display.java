@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -83,27 +84,38 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             }
         });
 
-        matchofficialList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        matchofficialList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MatchOfficial matchOfficial = matchOfficials.get(position);
-                Intent MOEditIntent = new Intent(tzlc_matchofficial_display.this, tzlc_matchofficial_add.class);
-                Bundle extras = new Bundle();
-                extras.putString("role", role);
-                extras.putString("fixtureID", fixtureID);
-                extras.putString("moID", matchOfficial.getId());
-                extras.putString("awayClub",awayClub);
-                extras.putString("homeClub", homeClub);
-                extras.putString("moClub",matchOfficial.getClubName());
-                extras.putString("moPlayer",matchOfficial.getPlayerName());
-                extras.putString("moDuty",matchOfficial.getRole());
-                extras.putInt("scrollIndex", matchofficialList.getFirstVisiblePosition());
-                MOEditIntent.putExtras(extras);
-                startActivityForResult(MOEditIntent, 100);
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if(role.equals("KFANDRAAI")) {
+                    MatchOfficial matchOfficial = matchOfficials.get(position);
+                    Intent MOEditIntent = new Intent(tzlc_matchofficial_display.this, tzlc_matchofficial_add.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("role", role);
+                    extras.putString("fixtureID", fixtureID);
+                    extras.putString("moID", matchOfficial.getId());
+                    extras.putString("awayClub", awayClub);
+                    extras.putString("homeClub", homeClub);
+                    extras.putString("moClub", matchOfficial.getClubName());
+                    extras.putString("moPlayer", matchOfficial.getPlayerName());
+                    extras.putString("moDuty", matchOfficial.getRole());
+                    extras.putInt("scrollIndex", matchofficialList.getFirstVisiblePosition());
+                    MOEditIntent.putExtras(extras);
+                    startActivityForResult(MOEditIntent, 100);
+                }else{
+                    Toast.makeText(tzlc_matchofficial_display.this,"Only KFANDRAAI can edit MO", Toast.LENGTH_SHORT).show();
+                }
+                return false;
             }
         });
 
+
         FloatingActionButton fab = findViewById(R.id.fab);
+        if(role.equals("PLAYER"))
+            fab.setVisibility(View.GONE);
+        else
+            fab.setVisibility(View.VISIBLE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

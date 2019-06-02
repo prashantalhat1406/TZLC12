@@ -73,7 +73,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> clubAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,clubNames);
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 clubSpinner.setAdapter(clubAdapter);
-                if(moID.length() !=0)
+                if(moID != null)
                     clubSpinner.setSelection(clubAdapter.getPosition(moClub));
 
             }
@@ -145,7 +145,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> playerAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,playersClub);
                 playerAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 playerSpinner.setAdapter(playerAdapter);
-                if(moID.length() !=0)
+                if(moID != null)
                     playerSpinner.setSelection(playerAdapter.getPosition(moPlayer));
 
             }
@@ -161,9 +161,19 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         modutyadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         dutySpinner.setAdapter(modutyadapter);
 
-        if(moID.length() != 0)
+        if(moID != null)
         {
             dutySpinner.setSelection(modutyadapter.getPosition(moDuty));
+        }
+
+        if(role.equals("MANAGER"))
+        {
+            dutySpinner.setSelection(modutyadapter.getPosition("Ball Boy"));
+            dutySpinner.setEnabled(false);
+        }
+        else
+        {
+            dutySpinner.setEnabled(true);
         }
 
 
@@ -180,7 +190,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 //DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
                 //databaseReference.push().setValue(matchOfficial);
 
-                if (moID.length() != 0) {
+                if (moID != null ) {
                     DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID+"/"+moID);
                     databaseReference.setValue(matchOfficial);
 
