@@ -42,11 +42,12 @@ public class tzlc_fixture_display extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Calendar calendar = Calendar.getInstance();
+        final int currentdate = (calendar.get(Calendar.YEAR)*100 +(calendar.get(Calendar.MONTH)+1))*100+calendar.get(Calendar.DAY_OF_MONTH);
         Bundle bundle = getIntent().getExtras();
         role = bundle.getString("role");
 
         fixtures = new ArrayList<Fixture>();
-
         fixtureList = findViewById(R.id.listFixture);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
@@ -58,9 +59,12 @@ public class tzlc_fixture_display extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Fixture fixture = dataSnapshot.getValue(Fixture.class);
                 fixture.setId(dataSnapshot.getKey());
+                if(fixture.getDate() < currentdate)
+                    scrollIndex+=1;
                 fixtures.add(fixture);
                 adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.listitemfixture, fixtures);
                 fixtureList.setAdapter(fixtureadapter);
+                fixtureList.setSelectionFromTop(scrollIndex, 0);
             }
 
             @Override
