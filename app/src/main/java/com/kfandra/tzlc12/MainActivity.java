@@ -61,39 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapterPage adapterPage = new adapterPage(MainActivity.this, R.layout.listitempage, pages);
         pageList.setAdapter(adapterPage);
-/*
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
-         Query query = database.getReference("/pages");
-        query.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Page page = dataSnapshot.getValue(Page.class);
-                page.setId(dataSnapshot.getKey());
-                pages.add(page);
-                adapterPage adapterPage = new adapterPage(MainActivity.this, R.layout.listitempage, pages);
-                pageList.setAdapter(adapterPage);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
         pageList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -138,44 +105,7 @@ public class MainActivity extends AppCompatActivity {
         //prashant.alhat@kfandra.com  : Test123$
         //kfandraai@kfandra.com
         //MRManager@kfandra.com
-        /*final Button clubs = findViewById(R.id.butClubs);
-        clubs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent clubIntent = new Intent(MainActivity.this, tzlc_club_display.class);
-                Bundle extras  = new Bundle();
-                extras.putString("role", role);
-                clubIntent.putExtras(extras);
-                startActivity(clubIntent);
-            }
-        });
 
-        final Button players = findViewById(R.id.butPlayer);
-        players.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent playerIntent = new Intent(MainActivity.this, tzlc_player_display.class);
-                Bundle extras  = new Bundle();
-                extras.putString("role", role);
-                playerIntent.putExtras(extras);
-                startActivity(playerIntent);
-            }
-        });
-
-
-        final Button fixtures = findViewById(R.id.butFixtures);
-        fixtures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent fixtureIntent = new Intent(MainActivity.this, tzlc_fixture_display.class);
-                Bundle extras  = new Bundle();
-                extras.putString("role", role);
-                fixtureIntent.putExtras(extras);
-                startActivity(fixtureIntent);
-            }
-        });
-        final Button balancesheet = findViewById(R.id.butBalanceSheet);
-        */
 
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -185,29 +115,14 @@ public class MainActivity extends AppCompatActivity {
                 if(user != null){
                     //signed in
                     if (user.getEmail().equalsIgnoreCase("kfandraai@kfandra.com") ){
-                        /*clubs.setVisibility(View.VISIBLE);
-                        players.setVisibility(View.VISIBLE);
-                        fixtures.setVisibility(View.VISIBLE);
-                        balancesheet.setVisibility(View.VISIBLE);*/
                         role = "KFANDRAAI";
                     }else if(user.getEmail().contains("manager")){
-                        /*clubs.setVisibility(View.VISIBLE);
-                        players.setVisibility(View.VISIBLE);
-                        fixtures.setVisibility(View.VISIBLE);
-                        balancesheet.setVisibility(View.VISIBLE);*/
                         role = "MANAGER";
-
                     }else {
-                        /*clubs.setVisibility(View.VISIBLE);
-                        players.setVisibility(View.VISIBLE);
-                        fixtures.setVisibility(View.VISIBLE);
-                        balancesheet.setVisibility(View.GONE);*/
                         role = "PLAYER";
                     }
                     getSupportActionBar().setTitle("TZLC-12   Welcome " + user.getDisplayName());
-                    //TextView welcometxt = findViewById(R.id.txtwelcomeBar);
-                    //welcometxt.setText("Welcome " + user.getDisplayName());
-                    //Toast.makeText(MainActivity.this, user.getDisplayName() + " Signed  IN", Toast.LENGTH_LONG).show();
+
                 }else{
                     //signed out
                     startActivityForResult(
@@ -215,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                     .createSignInIntentBuilder()
                                     .setIsSmartLockEnabled(false)
                                     .setAvailableProviders(Arrays.asList(
-                                            new AuthUI.IdpConfig.EmailBuilder().build(),
-                                            new AuthUI.IdpConfig.GoogleBuilder().build()
+                                            new AuthUI.IdpConfig.EmailBuilder().build()
                                     ))
                                     .build(),RC_SIGN_IN
                     );
