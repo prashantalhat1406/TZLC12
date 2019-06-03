@@ -57,6 +57,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
 
 
         clubNames = new ArrayList<String>();
+        clubNames.add("Please select Club");
         players = new ArrayList<Player>();
 
         database = FirebaseDatabase.getInstance("https://tzlc12.firebaseio.com/");
@@ -138,6 +139,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 List<String> playersClub = new ArrayList<String>();
+                playersClub.add("Please select Club");
                 for (Player player : players) {
                     if(clubNames.get(position).equals(player.getClubName()))
                         playersClub.add(player.getPlayerName());

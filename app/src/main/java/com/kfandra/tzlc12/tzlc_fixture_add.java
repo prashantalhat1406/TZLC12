@@ -48,6 +48,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
 
         clubs = new ArrayList<>();
         clubNames = new ArrayList<>();
+        clubNames.add("Please select Club");
 
         Bundle b = getIntent().getExtras();
         final String fixtureID = b.getString("fixtureID");
