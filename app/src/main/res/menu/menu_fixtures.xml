@@ -2,6 +2,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/addFixture" android:title="Add Fixture" app:showAsAction="never"/>
-    <item android:id="@+id/editFixture" android:title="Edit Fixture" app:showAsAction="never"/>
-    <item android:id="@+id/deleteFixture" android:title="Delete Fixture" app:showAsAction="never"/>
 </menu>

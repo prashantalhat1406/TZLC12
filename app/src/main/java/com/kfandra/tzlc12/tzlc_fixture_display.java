@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -99,12 +100,6 @@ public class tzlc_fixture_display extends AppCompatActivity {
         fixtureList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(tzlc_fixture_display.this,"Single Click", Toast.LENGTH_SHORT).show();
-                /*for(int a = 0; a < parent.getChildCount(); a++)
-                {
-                    parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
-                }
-                view.setBackgroundColor(Color.GREEN);*/
                 Fixture fixture = fixtures.get(position);
                 Intent fixtureEditIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_details.class);
                 Bundle extras = new Bundle();
@@ -154,24 +149,24 @@ public class tzlc_fixture_display extends AppCompatActivity {
 
         fixtureList.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
-        /*Query recent = databaseReference.limitToFirst(10);
-        FirebaseListOptions<Fixture> options = new FirebaseListOptions.Builder<Fixture>()
-                .setQuery(recent,Fixture.class)
-                .setLayout(R.layout.listitemfixture)
-                .build();*/
+        FloatingActionButton fab = findViewById(R.id.fab);
+        if(role.equals("KFANDRAAI"))
+            fab.show();
+        else
+            fab.hide();
 
-
-
-        /*FirebaseListAdapter<Fixture> fixtureadapter = new FirebaseListAdapter<Fixture>(options) {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void populateView(@NonNull View v, @NonNull Fixture fixture, int position) {
-                ((TextView)v.findViewById(R.id.fixtureDisplayHome)).setText("" + fixture.getHomeClub());
-                ((TextView)v.findViewById(R.id.fixtureDisplayAway)).setText("" + fixture.getAwayClub());
+            public void onClick(View view) {
+                Intent fixtureAddIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_add.class);
+                Bundle extras  = new Bundle();
+                extras.putString("role", role);
+                extras.putString("fixtureID", "");
+                extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
+                fixtureAddIntent.putExtras(extras);
+                startActivityForResult(fixtureAddIntent,100);
             }
-        };*/
-
-        invalidateOptionsMenu();
-
+        });
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.app_name) + " Fixtures");
@@ -189,29 +184,6 @@ public class tzlc_fixture_display extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_fixtures,menu);
-
-        return true;
-        //return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if(!role.equalsIgnoreCase("KFANDRAAI")){
-            menu.findItem(R.id.addFixture).setVisible(false);
-            menu.findItem(R.id.editFixture).setVisible(false);
-            menu.findItem(R.id.deleteFixture).setVisible(false);
-        }else{
-            menu.findItem(R.id.addFixture).setVisible(true);
-            menu.findItem(R.id.editFixture).setVisible(true);
-            menu.findItem(R.id.deleteFixture).setVisible(true);
-        }
-        return true;
-        //return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
     public void onBackPressed() {
         Intent returnI = new Intent();
         Bundle extras = new Bundle();
@@ -220,23 +192,5 @@ public class tzlc_fixture_display extends AppCompatActivity {
         setResult(100, returnI);
         finish();
         //super.onBackPressed();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.addFixture :
-                Intent fixtureAddIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_add.class);
-                Bundle extras  = new Bundle();
-                extras.putString("role", role);
-                extras.putString("fixtureID", "");
-                extras.putInt("scrollIndex", fixtureList.getFirstVisiblePosition());
-                fixtureAddIntent.putExtras(extras);
-                startActivityForResult(fixtureAddIntent,100);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
