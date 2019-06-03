@@ -31,6 +31,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
     Query query;
     FirebaseDatabase database;
     private String  fixtureID;
+    private int updatePosition=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,11 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                MatchOfficial matchOfficial = dataSnapshot.getValue(MatchOfficial.class);
+                matchOfficial.setId(dataSnapshot.getKey());
+                matchOfficials.set(updatePosition,matchOfficial);
+                adapterMatchOfficial adapterMatchOfficial = new adapterMatchOfficial(tzlc_matchofficial_display.this, R.layout.listitemmatchofficial, matchOfficials);
+                matchofficialList.setAdapter(adapterMatchOfficial);
             }
 
             @Override
@@ -88,6 +93,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if(role.equals("KFANDRAAI")) {
                     MatchOfficial matchOfficial = matchOfficials.get(position);
+                    updatePosition=position;
                     Intent MOEditIntent = new Intent(tzlc_matchofficial_display.this, tzlc_matchofficial_add.class);
                     Bundle extras = new Bundle();
                     extras.putString("role", role);
@@ -111,9 +117,11 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         if(role.equals("PLAYER"))
-            fab.setVisibility(View.GONE);
+            fab.hide();
+            //fab.setVisibility(View.GONE);
         else
-            fab.setVisibility(View.VISIBLE);
+            fab.show();
+            //fab.setVisibility(View.VISIBLE);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +137,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Match Officials for " + homeClub + " vs " + awayClub);
     }
 
     @Override
