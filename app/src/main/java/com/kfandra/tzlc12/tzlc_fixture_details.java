@@ -74,6 +74,7 @@ public class tzlc_fixture_details extends AppCompatActivity {
         });
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(" " + homeClub + " vs " + awayClub);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
