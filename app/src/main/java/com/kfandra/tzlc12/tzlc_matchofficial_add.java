@@ -210,7 +210,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                         Bundle extras = new Bundle();
                         extras.putString("role", role);
                         extras.putString("fixtureID", fixtureID);
-                        extras.putInt("updatePosition",updateposition);
+                        //extras.putInt("updatePosition",updateposition);
                         returnI.putExtras(extras);
                         setResult(100, returnI);
                         finish();

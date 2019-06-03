@@ -142,7 +142,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Match Officials for " + homeClub + " vs " + awayClub);
+        getSupportActionBar().setTitle("MO's for " + homeClub + " vs " + awayClub);
     }
 
     @Override
