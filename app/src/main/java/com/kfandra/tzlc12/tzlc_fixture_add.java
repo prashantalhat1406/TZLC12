@@ -143,35 +143,39 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fixture fixture = new Fixture();
-                fixture.setHomeClub(homeClubName.getSelectedItem().toString());
-                fixture.setHomeClubColor(clubs.get(homeClubName.getSelectedItemPosition()).getClubColor());
-                fixture.setAwayClub(awayClubName.getSelectedItem().toString());
-                fixture.setAwayClubColor(clubs.get(awayClubName.getSelectedItemPosition()).getClubColor());
-                fixture.setType(type.getSelectedItem().toString());
-                fixture.setSubtype(subtype.getSelectedItem().toString());
-                fixture.setDate(d);
-                fixture.setResult("Yet to be played");
+                if(!homeClubName.getSelectedItem().toString().equals("Please select Club") && !awayClubName.getSelectedItem().toString().equals("Please select Club"))
+                {
+                    Fixture fixture = new Fixture();
+                    fixture.setHomeClub(homeClubName.getSelectedItem().toString());
+                    fixture.setHomeClubColor(clubs.get(homeClubName.getSelectedItemPosition()).getClubColor());
+                    fixture.setAwayClub(awayClubName.getSelectedItem().toString());
+                    fixture.setAwayClubColor(clubs.get(awayClubName.getSelectedItemPosition()).getClubColor());
+                    fixture.setType(type.getSelectedItem().toString());
+                    fixture.setSubtype(subtype.getSelectedItem().toString());
+                    fixture.setDate(d);
+                    fixture.setResult("Yet to be played");
 
-                if(fixture.getHomeClub().equalsIgnoreCase(fixture.getAwayClub()))
-                    Toast.makeText(tzlc_fixture_add.this,"Error !! Home and Away Club can not be same",Toast.LENGTH_SHORT).show();
-                else {
-                    if (fixtureID != null) {
-                        DatabaseReference databaseReference = database.getReference("fixtures/" + fixtureID);
-                        databaseReference.setValue(fixture);
+                    if (fixture.getHomeClub().equalsIgnoreCase(fixture.getAwayClub()))
+                        Toast.makeText(tzlc_fixture_add.this, "Error !! Home and Away Club can not be same", Toast.LENGTH_SHORT).show();
+                    else {
+                        if (fixtureID != null) {
+                            DatabaseReference databaseReference = database.getReference("fixtures/" + fixtureID);
+                            databaseReference.setValue(fixture);
 
-                    } else {
-                        DatabaseReference databaseReference = database.getReference("fixtures");
-                        databaseReference.push().setValue(fixture);
+                        } else {
+                            DatabaseReference databaseReference = database.getReference("fixtures");
+                            databaseReference.push().setValue(fixture);
+                        }
+
+                        Intent returnI = new Intent();
+                        Bundle extras = new Bundle();
+                        extras.putInt("role", scrollIndex);
+                        returnI.putExtras(extras);
+                        setResult(100, returnI);
+                        finish();
                     }
-
-                    Intent returnI = new Intent();
-                    Bundle extras = new Bundle();
-                    extras.putInt("role", scrollIndex);
-                    returnI.putExtras(extras);
-                    setResult(100, returnI);
-                    finish();
-                }
+                }else
+                    Toast.makeText(tzlc_fixture_add.this, "Please select Club from dropdown", Toast.LENGTH_SHORT).show();
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

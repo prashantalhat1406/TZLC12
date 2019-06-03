@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import com.google.firebase.database.ChildEventListener;
@@ -139,7 +140,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 List<String> playersClub = new ArrayList<String>();
-                playersClub.add("Please select Club");
+                playersClub.add("Please select Player");
                 for (Player player : players) {
                     if(clubNames.get(position).equals(player.getClubName()))
                         playersClub.add(player.getPlayerName());
@@ -183,31 +184,37 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!playerSpinner.getSelectedItem().toString().equals("Please select Player"))
+                {
+                    if (!clubSpinner.getSelectedItem().toString().equals("Please select Club")) {
+                        MatchOfficial matchOfficial = new MatchOfficial();
+                        matchOfficial.setClubName(clubSpinner.getSelectedItem().toString());
+                        matchOfficial.setPlayeName(playerSpinner.getSelectedItem().toString());
+                        matchOfficial.setRole(dutySpinner.getSelectedItem().toString());
 
-                MatchOfficial matchOfficial = new MatchOfficial();
-                matchOfficial.setClubName(clubSpinner.getSelectedItem().toString());
-                matchOfficial.setPlayeName(playerSpinner.getSelectedItem().toString());
-                matchOfficial.setRole(dutySpinner.getSelectedItem().toString());
+                        //DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                        //databaseReference.push().setValue(matchOfficial);
 
-                //DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
-                //databaseReference.push().setValue(matchOfficial);
+                        if (moID != null) {
+                            DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID + "/" + moID);
+                            databaseReference.setValue(matchOfficial);
 
-                if (moID != null ) {
-                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID+"/"+moID);
-                    databaseReference.setValue(matchOfficial);
+                        } else {
+                            DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
+                            databaseReference.push().setValue(matchOfficial);
+                        }
 
-                } else {
-                    DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
-                    databaseReference.push().setValue(matchOfficial);
-                }
-
-                Intent returnI = new Intent();
-                Bundle extras = new Bundle();
-                extras.putString("role", role);
-                extras.putString("fixtureID", fixtureID);
-                returnI.putExtras(extras);
-                setResult(100, returnI);
-                finish();
+                        Intent returnI = new Intent();
+                        Bundle extras = new Bundle();
+                        extras.putString("role", role);
+                        extras.putString("fixtureID", fixtureID);
+                        returnI.putExtras(extras);
+                        setResult(100, returnI);
+                        finish();
+                    } else
+                        Toast.makeText(tzlc_matchofficial_add.this, "Please select Club from dropdown", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(tzlc_matchofficial_add.this, "Please select Player from dropdown", Toast.LENGTH_SHORT).show();
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
