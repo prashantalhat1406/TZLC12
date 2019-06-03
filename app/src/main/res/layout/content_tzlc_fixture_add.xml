@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textAlignment="textStart"
+            android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
             android:text="Date" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textAlignment="textStart"
+            android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
             android:text="Home Club" />
 
         <Spinner
@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textAlignment="textStart"
+            android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
             android:text="Away Club" />
 
         <Spinner
@@ -87,7 +87,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textAlignment="textStart"
+            android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
             android:text="Type" />
 
         <Spinner
@@ -109,7 +109,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textAlignment="textStart"
+            android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
             android:text="Sub-Type" />
 
         <Spinner

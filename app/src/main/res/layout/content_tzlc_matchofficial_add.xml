@@ -12,8 +12,8 @@
         android:layout_width="match_parent" android:layout_weight="0.2"
         android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:text="Club : "/>
+            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center" android:textColor="@color/Black"
+            android:layout_height="match_parent" android:text="Club"/>
         <Spinner
             android:layout_width="match_parent" android:id="@+id/spnMOAddClub"
             android:layout_height="match_parent" android:layout_weight="0.3" ></Spinner>
@@ -23,8 +23,8 @@
         android:layout_width="match_parent" android:layout_weight="0.2"
         android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:text="Player : "/>
+            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center" android:textColor="@color/Black"
+            android:layout_height="match_parent" android:text="Player"/>
         <Spinner
             android:layout_width="match_parent" android:id="@+id/spnMOAddPlayer"
             android:layout_height="match_parent" android:layout_weight="0.3" ></Spinner>
@@ -34,8 +34,8 @@
         android:layout_width="match_parent" android:layout_weight="0.2"
         android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:text="Duty : "/>
+            android:layout_width="match_parent" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:layout_gravity="center" android:gravity="center" android:textColor="@color/Black"
+            android:layout_height="match_parent" android:text="Duty"/>
         <Spinner
             android:layout_width="match_parent" android:id="@+id/spnMOAddDuty"
             android:layout_height="match_parent" android:layout_weight="0.3" ></Spinner>
