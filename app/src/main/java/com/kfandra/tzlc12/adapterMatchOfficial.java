@@ -1,6 +1,7 @@
 package com.kfandra.tzlc12;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -39,6 +40,10 @@ public class adapterMatchOfficial extends ArrayAdapter<MatchOfficial> {
         moName.setText("" + matchOfficial. getPlayerName());
         moRole.setText("" + matchOfficial.getRole());
         moClub.setText("" + matchOfficial.getClubName());
+
+        //convertView.setBackgroundColor(Color.parseColor("#E1F5FE"));
+        convertView.setBackgroundColor(context.getResources().getColor(R.color.listColorPrimary));
+
         return convertView;
     }
 }

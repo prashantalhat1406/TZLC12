@@ -1,6 +1,7 @@
 package com.kfandra.tzlc12;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -85,6 +87,14 @@ public class adapterFixture extends ArrayAdapter<Fixture> {
         {
             Log.d("Fixture Adapter", "Invalid Date");
         }
+
+        int currentDate = ((Calendar.getInstance().get(Calendar.YEAR)*100)+(Calendar.getInstance().get(Calendar.MONTH)+1))*100+Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        if(currentDate < fixture.getDate())
+            //convertView.setBackgroundColor(Color.parseColor("#F9FBE7"));
+            convertView.setBackgroundColor(context.getResources().getColor(R.color.listColorSecondary));
+        else
+            //convertView.setBackgroundColor(Color.parseColor("#E1F5FE"));
+            convertView.setBackgroundColor(context.getResources().getColor(R.color.listColorPrimary));
 
         //fixtureResult.setText("" + fixture.getResult());
         //fixtureResult.setText("");

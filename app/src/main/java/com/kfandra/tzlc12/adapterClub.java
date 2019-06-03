@@ -1,6 +1,7 @@
 package com.kfandra.tzlc12;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -52,6 +53,9 @@ public class adapterClub extends ArrayAdapter<Club> {
         else
             clubManager.setText("" + club.getManagerName());
         clubGround.setText("" + club.getHomeGround());
+
+        //convertView.setBackgroundColor(Color.parseColor("#E1F5FE"));
+        convertView.setBackgroundColor(context.getResources().getColor(R.color.listColorPrimary));
 
         return convertView;
     }

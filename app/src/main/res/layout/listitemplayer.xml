@@ -9,10 +9,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_weight="0.2">
             <TextView android:id="@+id/playerName"
-                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.3" android:textSize="@dimen/listFirstLine"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.3" android:textSize="@dimen/listFirstLine" android:textColor="@color/Black"
                 android:layout_height="match_parent" android:text="Prashant Alhat" android:textStyle="bold"/>
             <TextView android:id="@+id/playerValue"
-                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine"
+                android:layout_width="match_parent" android:gravity="center" android:layout_weight="0.7" android:textSize="@dimen/listSecondLine" android:textColor="@color/Black"
                 android:layout_height="match_parent" android:text="38" android:textStyle="bold"/>
         </LinearLayout>
         <LinearLayout
