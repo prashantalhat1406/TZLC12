@@ -34,6 +34,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
     //private DatabaseReference databaseReference;
     ListView fixtureList;
     public int scrollIndex=0;
+    private int updatePosition=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,14 @@ public class tzlc_fixture_display extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Fixture fixture = dataSnapshot.getValue(Fixture.class);
+                fixture.setId(dataSnapshot.getKey());
+                if(fixture.getDate() < currentdate)
+                    scrollIndex+=1;
+                fixtures.set(updatePosition,fixture);
+                adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.listitemfixture, fixtures);
+                fixtureList.setAdapter(fixtureadapter);
+                fixtureList.setSelectionFromTop(scrollIndex, 0);
             }
 
             @Override
@@ -117,9 +126,9 @@ public class tzlc_fixture_display extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Fixture fixture = fixtures.get(position);
-
+                updatePosition = position;
                 Calendar calendar    = Calendar.getInstance();
-                if((calendar.get(Calendar.YEAR) * 10000 + (calendar.get(Calendar.MONTH)+1)*100 + calendar.get(Calendar.DAY_OF_MONTH)) < fixture.getDate()) {
+                if((calendar.get(Calendar.YEAR) * 10000 + (calendar.get(Calendar.MONTH)+1)*100 + calendar.get(Calendar.DAY_OF_MONTH)) <= fixture.getDate()) {
                     if (role.equalsIgnoreCase("KFANDRAAI")) {
                         Intent fixtureEditIntent = new Intent(tzlc_fixture_display.this, tzlc_fixture_add.class);
                         Bundle extras = new Bundle();
@@ -139,7 +148,7 @@ public class tzlc_fixture_display extends AppCompatActivity {
                 }else
                     Toast.makeText(tzlc_fixture_display.this, "Previous date's Fixture can not be edited", Toast.LENGTH_SHORT).show();
 
-                return false;
+                return true;
             }
         });
 

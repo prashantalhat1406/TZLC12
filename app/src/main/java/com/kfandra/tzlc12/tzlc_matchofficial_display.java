@@ -110,7 +110,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                 }else{
                     Toast.makeText(tzlc_matchofficial_display.this,"Only KFANDRAAI can edit MO", Toast.LENGTH_SHORT).show();
                 }
-                return false;
+                return true;
             }
         });
 
