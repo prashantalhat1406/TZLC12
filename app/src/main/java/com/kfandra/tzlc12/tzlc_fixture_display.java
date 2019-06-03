@@ -26,6 +26,8 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class tzlc_fixture_display extends AppCompatActivity {
@@ -64,6 +66,14 @@ public class tzlc_fixture_display extends AppCompatActivity {
                 if(fixture.getDate() < currentdate)
                     scrollIndex+=1;
                 fixtures.add(fixture);
+
+                Collections.sort(fixtures, new Comparator<Fixture>() {
+                    @Override
+                    public int compare(Fixture o1, Fixture o2) {
+                        return  Long.compare(o1.getDate(),o2.getDate());
+                    }
+                });
+
                 adapterFixture fixtureadapter = new adapterFixture(tzlc_fixture_display.this, R.layout.listitemfixture, fixtures);
                 fixtureList.setAdapter(fixtureadapter);
                 fixtureList.setSelectionFromTop(scrollIndex, 0);
