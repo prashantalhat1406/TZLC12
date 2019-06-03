@@ -33,6 +33,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
     Spinner type,subtype,homeClubName,awayClubName;
     public EditText datepicker;
     private long d;
+    String fixtureID="";
     String fixturehomeClubName,fixtureawayClubName;
     
 
@@ -51,8 +52,9 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         clubNames.add("Please select Club");
 
         Bundle b = getIntent().getExtras();
-        final String fixtureID = b.getString("fixtureID");
+        fixtureID = b.getString("fixtureID");
         scrollIndex = b.getInt("scrollIndex",-1);
+
 
         fixturehomeClubName = b.getString("homeClub");
         fixtureawayClubName = b.getString("awayClub");
@@ -74,7 +76,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 homeClubName.setAdapter(clubAdapter);
                 awayClubName.setAdapter(clubAdapter);
-                if(fixtureID != null )
+                if(fixtureID.length() != 0 )
                 {
                     awayClubName.setSelection(clubAdapter.getPosition(fixtureawayClubName));
                     homeClubName.setSelection(clubAdapter.getPosition(fixturehomeClubName));
@@ -112,13 +114,15 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         subtypeadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         subtype.setAdapter(subtypeadapter);
 
+        Calendar calendar = Calendar.getInstance();
         datepicker =  findViewById(R.id.edtFixtureDate);
+
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 DatePickerDialog datePickerDialog;
-                if(fixtureID != null )
+                if(fixtureID.length() != 0)
                     datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,fixturedate.intValue()/10000,((fixturedate.intValue()/100)%100)-1,(fixturedate.intValue()%100));
                 else
                     datePickerDialog =  new DatePickerDialog(tzlc_fixture_add.this,tzlc_fixture_add.this,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
@@ -130,7 +134,7 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
 
         getSupportActionBar().setTitle(getString(R.string.app_name) + " Create New Fixture");
 
-        if(fixtureID != null)
+        if(fixtureID.length() != 0)
         {
             type.setSelection(typeadapter.getPosition(fixturetype));
             subtype.setSelection(subtypeadapter.getPosition(fixturesubtype));
@@ -143,39 +147,43 @@ public class tzlc_fixture_add extends AppCompatActivity implements DatePickerDia
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!homeClubName.getSelectedItem().toString().equals("Please select Club") && !awayClubName.getSelectedItem().toString().equals("Please select Club"))
+                if(datepicker.length() != 0)
                 {
-                    Fixture fixture = new Fixture();
-                    fixture.setHomeClub(homeClubName.getSelectedItem().toString());
-                    fixture.setHomeClubColor(clubs.get(homeClubName.getSelectedItemPosition()).getClubColor());
-                    fixture.setAwayClub(awayClubName.getSelectedItem().toString());
-                    fixture.setAwayClubColor(clubs.get(awayClubName.getSelectedItemPosition()).getClubColor());
-                    fixture.setType(type.getSelectedItem().toString());
-                    fixture.setSubtype(subtype.getSelectedItem().toString());
-                    fixture.setDate(d);
-                    fixture.setResult("Yet to be played");
+                    if(!homeClubName.getSelectedItem().toString().equals("Please select Club") && !awayClubName.getSelectedItem().toString().equals("Please select Club"))
+                    {
+                        Fixture fixture = new Fixture();
+                        fixture.setHomeClub(homeClubName.getSelectedItem().toString());
+                        fixture.setHomeClubColor(clubs.get(homeClubName.getSelectedItemPosition()-1).getClubColor());
+                        fixture.setAwayClub(awayClubName.getSelectedItem().toString());
+                        fixture.setAwayClubColor(clubs.get(awayClubName.getSelectedItemPosition()-1).getClubColor());
+                        fixture.setType(type.getSelectedItem().toString());
+                        fixture.setSubtype(subtype.getSelectedItem().toString());
+                        fixture.setDate(d);
+                        fixture.setResult("Yet to be played");
 
-                    if (fixture.getHomeClub().equalsIgnoreCase(fixture.getAwayClub()))
-                        Toast.makeText(tzlc_fixture_add.this, "Error !! Home and Away Club can not be same", Toast.LENGTH_SHORT).show();
-                    else {
-                        if (fixtureID != null) {
-                            DatabaseReference databaseReference = database.getReference("fixtures/" + fixtureID);
-                            databaseReference.setValue(fixture);
+                        if (fixture.getHomeClub().equalsIgnoreCase(fixture.getAwayClub()))
+                            Toast.makeText(tzlc_fixture_add.this, "Error !! Home and Away Club can not be same", Toast.LENGTH_SHORT).show();
+                        else {
+                            if (fixtureID.length() != 0) {
+                                DatabaseReference databaseReference = database.getReference("fixtures/" + fixtureID);
+                                databaseReference.setValue(fixture);
 
-                        } else {
-                            DatabaseReference databaseReference = database.getReference("fixtures");
-                            databaseReference.push().setValue(fixture);
+                            } else {
+                                DatabaseReference databaseReference = database.getReference("fixtures");
+                                databaseReference.push().setValue(fixture);
+                            }
+
+                            Intent returnI = new Intent();
+                            Bundle extras = new Bundle();
+                            extras.putInt("role", scrollIndex);
+                            returnI.putExtras(extras);
+                            setResult(100, returnI);
+                            finish();
                         }
-
-                        Intent returnI = new Intent();
-                        Bundle extras = new Bundle();
-                        extras.putInt("role", scrollIndex);
-                        returnI.putExtras(extras);
-                        setResult(100, returnI);
-                        finish();
-                    }
+                    }else
+                        Toast.makeText(tzlc_fixture_add.this, "Please select Club from dropdown", Toast.LENGTH_SHORT).show();
                 }else
-                    Toast.makeText(tzlc_fixture_add.this, "Please select Club from dropdown", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(tzlc_fixture_add.this, "Please select Date", Toast.LENGTH_SHORT).show();
             }
         });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

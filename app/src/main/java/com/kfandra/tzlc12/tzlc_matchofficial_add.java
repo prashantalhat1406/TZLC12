@@ -27,13 +27,14 @@ import java.util.List;
 
 public class tzlc_matchofficial_add extends AppCompatActivity {
 
-    private String  fixtureID,homeClub,awayClub,moClub,moPlayer,moDuty,moID;
+    private String  fixtureID,homeClub,awayClub,moClub,moPlayer,moDuty,moID="";
     private String role;
     private List<Club> clubs;
     private List<String> clubNames;
     private List<Player> players;
     Spinner clubSpinner,playerSpinner,dutySpinner;
     FirebaseDatabase database;
+    private int updateposition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         moPlayer = bundle.getString("moPlayer");
         moDuty = bundle.getString("moDuty");
         moID = bundle.getString("moID");
+        updateposition = bundle.getInt("updatePosition",-1);
 
 
         clubSpinner = findViewById(R.id.spnMOAddClub);
@@ -75,7 +77,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> clubAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,clubNames);
                 clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 clubSpinner.setAdapter(clubAdapter);
-                if(moID != null)
+                if(moID.length() != 0)
                     clubSpinner.setSelection(clubAdapter.getPosition(moClub));
 
             }
@@ -148,7 +150,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                 ArrayAdapter<String> playerAdapter = new ArrayAdapter<String>(tzlc_matchofficial_add.this,R.layout.layout_dropdown_item,playersClub);
                 playerAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 playerSpinner.setAdapter(playerAdapter);
-                if(moID != null)
+                if(moID.length() != 0)
                     playerSpinner.setSelection(playerAdapter.getPosition(moPlayer));
 
             }
@@ -164,7 +166,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
         modutyadapter.setDropDownViewResource(R.layout.layout_dropdown_item);
         dutySpinner.setAdapter(modutyadapter);
 
-        if(moID != null)
+        if(moID.length() != 0)
         {
             dutySpinner.setSelection(modutyadapter.getPosition(moDuty));
         }
@@ -195,7 +197,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                         //DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID);
                         //databaseReference.push().setValue(matchOfficial);
 
-                        if (moID != null) {
+                        if (moID.length() != 0) {
                             DatabaseReference databaseReference = database.getReference("matchOfficials/" + fixtureID + "/" + moID);
                             databaseReference.setValue(matchOfficial);
 
@@ -208,6 +210,7 @@ public class tzlc_matchofficial_add extends AppCompatActivity {
                         Bundle extras = new Bundle();
                         extras.putString("role", role);
                         extras.putString("fixtureID", fixtureID);
+                        extras.putInt("updatePosition",updateposition);
                         returnI.putExtras(extras);
                         setResult(100, returnI);
                         finish();

@@ -105,6 +105,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                     extras.putString("moPlayer", matchOfficial.getPlayerName());
                     extras.putString("moDuty", matchOfficial.getRole());
                     extras.putInt("scrollIndex", matchofficialList.getFirstVisiblePosition());
+                    extras.putInt("updatePosition", updatePosition);
                     MOEditIntent.putExtras(extras);
                     startActivityForResult(MOEditIntent, 100);
                 }else{
@@ -132,6 +133,10 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
                 extras.putString("fixtureID", fixtureID);
                 extras.putString("homeClub", homeClub);
                 extras.putString("awayClub",awayClub);
+                extras.putString("moID", "");
+                extras.putString("moClub", "");
+                extras.putString("moPlayer", "");
+                extras.putString("moDuty", "");
                 fixtureEditIntent.putExtras(extras);
                 startActivityForResult(fixtureEditIntent, 100);
             }
@@ -161,6 +166,7 @@ public class tzlc_matchofficial_display extends AppCompatActivity {
             role = b.getString("role");
             fixtureID = b.getString("fixtureID");
             scrollIndex = b.getInt("scrollIndex", 1);
+            //updatePosition = b.getInt("updatePosition",-1);
             matchofficialList.setSelectionFromTop(scrollIndex, 0);
         }
     }
